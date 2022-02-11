@@ -5,3 +5,21 @@ ML & Server magick
 Server communication, like strings n stuff client side stuff and ruby a bit :) some languages are better tho, php used to be neah (nodejs)
 
 get data of biased websites, research paper with DB?
+compatible w chrome 
+
+
+split extension into two parts
+- 1 part reading in and passing on to ml (filtering)- Miko
+-other part doing labels/ censoring out (displaying) - 
+machine learning/making server- george
+server communication-
+get biased website- 
+
+chill tonight 
+by x pm tomorrow do- 
+wee meeting 
+by y pm do-
+
+sunday 
+presentation 12
+submit 2
