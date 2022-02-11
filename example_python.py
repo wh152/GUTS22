@@ -4,7 +4,9 @@ while baka_sussy:
     pass
 
 def susususususus(sus):
+    print("this is not sussy")
     return sus
+
 
 def lessthan(x,y):
     return x < y
