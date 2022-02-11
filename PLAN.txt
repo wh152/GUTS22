@@ -8,18 +8,30 @@ get data of biased websites, research paper with DB?
 compatible w chrome 
 
 
+
 split extension into two parts
 - 1 part reading in and passing on to ml (filtering)- Miko
--other part doing labels/ censoring out (displaying) - 
+send links in json format 
+-other part doing labels/ censoring out (displaying) - Will
 machine learning/making server- george
-server communication-
+send back dictionary of numbers
+server communication- Aliki java socket server socket blocking method gonna be using javascript language doesnt how to make a connection  
 get biased website- 
 
 chill tonight 
-by x pm tomorrow do- 
+by x pm tomorrow do- research own thing 
 wee meeting 
 by y pm do-
 
 sunday 
 presentation 12
 submit 2
+
+step 1: how to make extension
+step 2: get url from website and compile into list
+step 3: pass data from extension to george
+step 4: do machine learning to get confidence rating
+step 5: pass data back to extension
+step 6: extension labels the confidence ratings (fake news) / filters keywords (mean ppl) / suggests websites (filter bubbles)
+
+
