@@ -3,6 +3,9 @@ baka_sussy = True
 while baka_sussy:
     pass
 
+def susususususus(sus):
+    return sus
+
 def lessthan(x,y):
     return x < y
 
