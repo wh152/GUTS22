@@ -1,1 +1,7 @@
+Sometimes modern media can become a pit of fake news, filter bubbles and people being mean to each other. Create sm=omething to make it better!!!
+
+Extension, grab content as input | keyword | changes page & popup output (javascript and css)
+ML & Server magick
+Server communication, like strings n stuff client side stuff and ruby a bit :) some languages are better tho, php used to be neah (nodejs)
+
 
