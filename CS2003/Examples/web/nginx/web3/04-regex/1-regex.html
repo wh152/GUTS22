@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- Saleem BHatti, Sep 2018 -->
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Javascript Regular Expressions</title>
+</head>
+
+<body>
+
+<h1>Javascript Regular Expressions</h1>
+
+<h2>String Methods for Pattern Matching 1</h2>
+<p>
+
+<script type = "text/javascript">
+	let a_string = "JS is great; I like JS";
+	document.write("The original string is '" + a_string + "'<br />");
+	document.write("The first occurrence of js is at ");
+	document.write(a_string.search(/js/i));
+  document.write("<br />");
+  document.write("A single replacement: '");
+  document.write(a_string.replace(/js/i, "Javascript") + "'");
+  document.write("<br />");
+	document.write("A global replacement '");
+	document.write(a_string.replace(/js/gi, "Javascript") + "'");
+</script>
+
+</p>
+
+<p style="color: green;">
+Look at the source for this page so that you can see the patterns that are used.
+</p>
+
+</body>
+
+</html>

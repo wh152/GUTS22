@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- Saleem BHatti, Sep 2018 -->
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Reverse a Document</title>
+</head>
+
+<body>
+  <p>Paragraph 1</p>
+  <p>Paragraph 2</p>
+  <p>Paragraph 3</p>
+  <p>Look at the Javascript to see what is happening.</p>
+  <button onclick="reverse(document.body);">Click to reverse</button>
+
+<script>
+"use strict";
+
+function reverse(n) {
+  let children = n.childNodes;
+  let numChildren = children.length;
+  for (let i = numChildren - 1; i >= 0; i--) {
+    let c = n.removeChild(children[i]);
+    n.appendChild(c);
+  }
+}
+</script>
+
+</body>
+
+</html>

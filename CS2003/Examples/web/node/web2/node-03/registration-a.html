@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Registration Form</title>
+</head>
+
+<body>
+
+<h1>Registration Form</h1>
+
+<form action="registration-check.js" method="POST">
+
+  Firstnames: <input type="text" name="firstnames" /> <br />
+  Lastname: <input type="text" name="lastname" /> <br />
+  Email:  <input type="text" name="email" /> <br />
+  Role:
+  <select name="role">
+    <option selected></option> // force selection
+		<option value="Contractor">Contractor</option>
+		<option value="Guest">Guest</option>
+		<option value="Staff">Staff</option>
+		<option value="Student">Student</option>
+	</select>
+
+  <br />
+
+  <input type="submit" value="Register" />
+
+</form>
+
+</body>
+</html>

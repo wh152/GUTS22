@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="text1" style="display: block"> 
+    Here is some text that is visible
+</div>
+<div id="text2" style="display: none"> 
+    Here is some text that was hidden!
+</div>
+<input type="button" value="Click me" onclick="showText()">
+
+<script type="text/javascript">
+    function showText() {
+		let text1 = document.getElementById("text1");
+		let text2 = document.getElementById("text2")
+     	text1.style.display = "none";
+     	text2.style.display = "block";
+	}
+</script>
+
+</body>
+</html>

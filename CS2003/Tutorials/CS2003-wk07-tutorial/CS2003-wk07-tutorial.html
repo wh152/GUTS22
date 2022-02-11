@@ -1,0 +1,61 @@
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org" />
+<title>IP/DNS/UDP</title>
+<meta charset="iso-8859-1" />
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="/aa:CssFile" />
+<meta name="src" content="CS2003-wk07-tutorial.tex" />
+</head>
+<body>
+<div class="maketitle">University of St Andrews School of Computer Science<br />
+<br />
+CS2003&nbsp;&#8212;&nbsp;Internet and the Web&nbsp;&#8212;&nbsp;2020/21 &nbsp;<br />
+Tutorial&nbsp;7:
+<h2 class="titleHead">IP/DNS/UDP</h2>
+<br />
+Date: Week 7: 29-30 Oct 2020<br /></div>
+<ol class="enumerate1">
+<li class="enumerate" id="x1-3x1">UDP multicast
+<ol class="enumerate2">
+<li class="enumerate" id="x1-5x1">How does a multicast IP &#8216;address&#8217; differ in nature from a unicast IP address?</li>
+<li class="enumerate" id="x1-7x2">Think of some example applications that might use unicast, broadcast or multicast communication models.</li>
+<li class="enumerate" id="x1-9x3">Write a simple multicast-based &#8216;text chat&#8217; program, as described in the lab session for week 05.</li>
+</ol>
+</li>
+<li class="enumerate" id="x1-11x2">Regular Expressions
+<ol class="enumerate2">
+<li class="enumerate" id="x1-13x1">Modify CS2003/Examples/CS2003-Examples-wk05/regex/FindMe.java so that it can:
+<ul class="itemize1">
+<li class="itemize">Match the string &#8220;FindMe&#8221; only if it appears as a separate word (i.e. it is not a sequence within another string); and</li>
+<li class="itemize">Perform that match regardless of whether or not the letters in &#8220;FindMe&#8221; are uppercase, or lowercase, or a mix of uppercase and lowercase.</li>
+</ul>
+</li>
+<li class="enumerate" id="x1-15x2">Write a program, EmailAddressCheck, that takes a single command-line argument, which is an email address, and checks that it is in the correct (expected) format: &#8216;user@domain.name&#8217;, by using a regular expression. Assume that the only permitted characters in both &#8216;user&#8217; and &#8216;domain.name&#8217; are:
+<ul class="itemize1">
+<li class="itemize">letter ranges: A-Z and a-z</li>
+<li class="itemize">digit range: 0-9</li>
+<li class="itemize">special characters: + - _</li>
+</ul>
+<!--l. 175-->
+<p class="noindent">and that the character &#8216;.&#8217; is permitted only in the &#8216;domain.name&#8217; part, to separate the components of the domain name, as would be expected, e.g. &#8216;tnhh@st-andrews.ac.uk&#8217;. <!--l. 216--></p>
+<p class="noindent">Why is this regular expression check insufficient to determine if this email address is valid and usable?</p>
+</li>
+</ol>
+</li>
+<li class="enumerate" id="x1-17x3">MultiChatServer <!--l. 238-->
+<p class="noindent">This item is related to the week 05 lab session, and the code in: <!--l. 240--></p>
+<p class="noindent">CS2003/Examples/CS2003-Examples-wk05/MultiChat/</p>
+<ol class="enumerate2">
+<li class="enumerate" id="x1-19x1">How is it that MultiChatServer can listen for incoming connections, as well as relay messages to all connected users?</li>
+<li class="enumerate" id="x1-21x2">How does the program maintain state about all connected users, and all incoming / outgoing messages?</li>
+<li class="enumerate" id="x1-23x3">Examine the file ChatMessage.java. How are the protocol messages defined? What characters are excluded from a message typed by the user, and why?</li>
+</ol>
+</li>
+<li class="enumerate" id="x1-25x4">Create one question on PeerWise covering the topics from week 5, and tag this question with the tag &#8220;week-5&#8221;. You should also try to answer at least one question with the same tag. Your tutor will pick a question at random during the tutorial and you can go through it together as a tutorial group.</li>
+</ol>
+<!--l. 342-->
+<p class="noindent">(Thanks to Saleem Bhatti) <a id="x1-1doc"></a></p>
+</body>
+</html>

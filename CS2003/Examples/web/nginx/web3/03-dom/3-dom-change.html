@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!-- Saleem BHatti, Sep 2018 -->
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>DOM Example - Dynamic Document</title>
+</head>
+
+<body>
+
+<input onclick="change()" type=button value="Change this document"> </input>
+
+<h1>Heading 1</h1>
+
+<p>Paragraph</p>
+
+<p>Look at the Javascript to see what is happening.</p>
+
+
+<script>
+"use strict";
+
+function change() {
+
+  // document.getElementsByTagName("h1")
+  // returns a NodeList of the h1 elements in
+  // the document, and the first is number 0:
+  let header = document.getElementsByTagName("h1").item(0);
+
+  // The firstChild of the header is a Text node:
+  header.firstChild.data = "A Dynamic Document";
+  // Now the header is "A d Dynamic Document".
+
+  let para = document.getElementsByTagName("p").item(0);
+  para.firstChild.data = "This is the first paragraph";
+
+  // Create a new Text node for the second paragraph.
+  let newText = document.createTextNode("This is another paragraph");
+
+  // Create a new Element to be the second paragraph.
+  let newElement = document.createElement("p");
+
+  // put the text in the paragraph ...
+  newElement.appendChild(newText);
+
+  // ... and put the paragraph on the end of the document by appending
+  // it to the body (which is the parent of para).
+  para.parentNode.appendChild(newElement);
+}
+</script>
+
+</body>
+</html>

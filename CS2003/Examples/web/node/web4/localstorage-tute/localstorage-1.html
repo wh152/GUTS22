@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<!--
+LocalStorage demo for CS2003
+Saleem Bhatti, Sep 2018
+-->
+
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>Browser Counter - localStorage</title>
+</head>
+
+<body>
+
+<h1>Browser Counter - localStorage</h1>
+
+<br />
+
+<script>
+  // https://developer.mozilla.org/en-US/docs/Web/API/Storage/LocalStorage
+  let expdate = new Date();
+  let visits;
+  let user = "blobby"; // This could have come from previous user input
+
+  // Set expiration date to a year from now.
+  expdate.setTime(expdate.getTime() + (24 * 60 * 60 * 1000 * 365));
+
+  if (!(visits = localStorage.getItem("visits"))) { visits = 0; }
+  visits++;
+  localStorage.setItem("visits", visits);
+  localStorage.setItem("user", user);
+  localStorage.setItem("expiry", expdate);
+
+  document.write(
+      "Your browser has visited this page <b style='color: green;'>" +
+	    visits +
+      "</b> time(s).");
+
+  document.write("<br/>");
+  document.write("LocalStorage on this page: " + showLocalStorage());
+</script>
+
+<script>
+// Return all key,value pairs in localStorage as a single string.
+function showLocalStorage() {
+  let itemCount = localStorage.length;
+  let s = "";
+  for (let i = 0; i < itemCount; ++i) {
+    let k = localStorage.key(i);
+    let v = localStorage[k];
+    s = s + k + "=" + v + ";";
+  }
+  return s;
+}
+</script>
+
+</body>
+</html>

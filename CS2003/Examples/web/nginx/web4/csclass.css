@@ -1,0 +1,65 @@
+
+/*
+ * CS2003 CSS3 demo
+ * Saleem Bhatti, saleem@st-andrews.ac.uk
+ * Sep 2018
+ */
+
+body {
+    color: black;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    padding: 0.2rem;
+}
+
+* {
+    border-radius: 0.4rem;
+}
+
+csclass {
+    padding: 0;
+    border-collapse: collapse;
+    display: table;
+}
+
+student {
+    color: gray;
+    padding: 0.2rem;
+    border-spacing: 0.4rem;
+    border: 0.4rem solid transparent;
+    display: table-row;
+}
+
+
+student > * {
+    padding: 0.4rem;
+    border-spacing: 0.4rem;
+    border: 0.4rem solid transparent;
+    display: table-cell;
+}
+
+homepage a {
+    padding: 0.2rem;
+    text-decoration: none;
+}
+
+homepage[status="true"] a {
+    background: lightgreen;
+}
+
+homepage[status="false"] a {
+    background: lightcoral;
+}
+
+homepage a:hover {
+    background: lavender;
+}
+
+.columnheading {
+    background: navy;
+    color: white;
+}
+
+.columnheading:hover {
+    background: skyblue;
+}

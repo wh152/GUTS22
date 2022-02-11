@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.2.0" />
+<title>Daily Message Board</title>
+<meta charset="iso-8859-1" />
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="\aa:CssFile" />
+<meta name="src" content="CS2003-P3-message-board.tex" />
+</head>
+<body>
+<div class="maketitle">University of St Andrews School of Computer Science<br />
+<br />
+CS2003&nbsp;&#8212;&nbsp;Internet and the Web&nbsp;&#8212;&nbsp;2020/21 &nbsp;<br />
+Assignment: Net2<br />
+Deadline: 2020-11-11&nbsp;Credits: 30% of coursework mark<br />
+MMS is the definitive source for deadline and credit details<br />
+<br />
+You are expected to have read and understood all the information in this specification and any accompanying documents at least a week before the deadline. You must contact the lecturer regarding any queries well in advance of the deadline.</div>
+<h3 class="likesectionHead"><a id="x1-1000"></a>Aim / Learning objectives</h3>
+<a id="x1-1000doc"></a> <!--l. 31-->
+<p class="noindent">The aim of this assignment is to extend your experience in building networked systems, both by building a client and server and understanding how this can interact with a web page. <!--l. 35--></p>
+<p class="noindent">Your task is to complete a simple message board application, consisting of a client and a server. You are given a web-based &#8216;front-end&#8217; which should not be modified. This web-based front-end reads files from your filespace. You will create a server application that can create these files. What goes into the files are messages sent from a remote client application which you will also write. When the client application sends some text, it is received by the server, and the
+server creates a file containing the message. The web front-end reads these files and displays them on a web page. This is shown in Figure <a href="#x1-10011">1<!--tex4ht:ref: f:diagram --></a> below. Your client and your server will be unaware of the web page that reads the messages. <!--l. 46--></p>
+<p class="noindent"></p>
+<hr class="figure" />
+<div class="figure"><a id="x1-10011"></a> <!--l. 48-->
+<p class="noindent"><img src="figures/schematic.png" alt="PIC" width="442" height="164" /><br /></p>
+<div class="caption"><span class="id">Figure&nbsp;1:</span> <span class="content">A logical diagram of the communication path for messages in this practical.</span></div>
+<!--tex4ht:label?: x1-10011 -->
+<!--l. 50-->
+<p class="noindent"></p>
+</div>
+<hr class="endfigure" />
+<!--l. 52-->
+<p class="noindent">Useful documentation for Java 11 can be found at: <!--l. 54--></p>
+<p class="noindent"><a href="https://docs.oracle.com/en/java/javase/11/" class="url">https://docs.oracle.com/en/java/javase/11/</a> <!--l. 56--></p>
+<p class="noindent"><a href="https://docs.oracle.com/en/java/javase/11/docs/api/allclasses.html" class="url">https://docs.oracle.com/en/java/javase/11/docs/api/allclasses.html</a></p>
+<h3 class="sectionHead"><span class="titlemark">1</span> <a id="x1-20001"></a>Requirements</h3>
+<!--l. 76-->
+<p class="noindent">You should create a client program and a server program in Java. Your overall solution should compile on the CS lab Linux machines. The server program should run on the host servers and the client program should run on the lab machines. <!--l. 203--></p>
+<p class="noindent"></p>
+<dl class="enumerate-enumitem">
+<dt class="enumerate-enumitem">R1</dt>
+<dd class="enumerate-enumitem"><a id="x1-20011"></a> The application should provide reliable data transfer, so it should use TCP.</dd>
+<dt class="enumerate-enumitem">R2</dt>
+<dd class="enumerate-enumitem"><a id="x1-20022"></a> The application should allow the client program to connect to the server program and to deliver a printable text message of 256 characters or less. That message is saved by the server in a &#8220;well-known&#8221; place, from where it is read and displayed by a web page (the web page is provided and should not be modified).</dd>
+<dt class="enumerate-enumitem">R3</dt>
+<dd class="enumerate-enumitem"><a id="x1-20033"></a> The client program must be invoked from the command line, and have a simple text-based interface for entering text messages. The client MUST be named DMBClient (for &#8220;Daily Message Board&#8221; Client). A simple client is provided which should work for the initial set of requirements (<a href="#x1-20011">R1<!--tex4ht:ref: req:tcp --></a>-<a href="#x1-20055">R5<!--tex4ht:ref: req:config --></a>) but will need adaptation to meet further
+requirements.</dd>
+<dt class="enumerate-enumitem">R4</dt>
+<dd class="enumerate-enumitem"><a id="x1-20044"></a> The server program should run continuously, and must create files as expected by the web page (see below for more information about the web page). The server MUST be named DMBServer, and should:
+<ul class="itemize1">
+<li class="itemize">Make sure that the correct directory for today&#8217;s messages exists.</li>
+<li class="itemize">Receive the messages from the client program.</li>
+<li class="itemize">Create the message files from the client text, and store them in today&#8217;s message directory.</li>
+</ul>
+<!--l. 242-->
+<p class="noindent">You must run your server program on your logical server with the FQDN: <!--l. 244--></p>
+<p class="noindent">&lt;your-username&gt;.host.cs.st-andrews.ac.uk <!--l. 246--></p>
+<p class="noindent">You should pick an individual port number as advised in the week 01 lab session (and as listed in CS2003-usernames-2020.csv). Client programs must run on the lab machines.</p>
+</dd>
+<dt class="enumerate-enumitem">R5</dt>
+<dd class="enumerate-enumitem"><a id="x1-20055"></a> The client and server programs should both use the Java Properties class for all run-time configuration (e.g. port numbers). Recompilation should not be required for any such configuration. I have provided a skeleton cs2003-net2.properties file which is also used by the sample DMBClient &#8212; your programs MUST use the variable names in this file, but you are allowed to extend this file with additional compile-time variables as you see fit. You should
+NOT hardcode any parameters such as your username, port number or file-paths into your programs &#8212; you will see examples of how to do this at run-time in cs2003-net2.properties.</dd>
+<dt class="enumerate-enumitem">R6</dt>
+<dd class="enumerate-enumitem"><a id="x1-20066"></a> Allow the server program and client program to deal gracefully with TCP connection problems, such as when the server is not running, or if an abnormal TCP connection termination occurs, e.g. client and server have an active TCP connection, and the client is terminated. (Hint: look at the kind of errors that could occur in each program, and the exception handling for Socket and ServerSocket.)</dd>
+<dt class="enumerate-enumitem">R7</dt>
+<dd class="enumerate-enumitem"><a id="x1-20077"></a> In your report, discuss the security and privacy issues with your application. Focus on what threats (security and privacy problems) are present, rather than on the mechanisms / technology that might offer solutions (we will examine this later on in the course). (Hint: Writing &#8216;there is no encryption&#8217; is not enough.) <!--l. 318-->
+<p class="noindent">(Hint for <a href="#x1-20088">R8<!--tex4ht:ref: req:senders --></a> and <a href="#x1-201010">R10<!--tex4ht:ref: req:multiuser --></a>: the sequence :: at the beginning of a line of text entered by the user indicates to the client that what follows is a &#8216;command&#8217; to the program. Your client and server code will need to be modified to generate and accept the application PDUs described below. Regular expressions (see the week 5 exercise class) may also be useful here.)</p>
+</dd>
+<dt class="enumerate-enumitem">R8</dt>
+<dd class="enumerate-enumitem"><a id="x1-20088"></a> Allow the client to choose from a list of classmates to send a message to, based on their individual usernames. <!--l. 329-->
+<p class="noindent">At the client, the user now types:</p>
+<div class="verbatim" id="verbatim-1"><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;::to</span><span class="pcrr7t-x-x-140">&nbsp;rrrr</span><span class="pcrr7t-x-x-140">&nbsp;mmmmmmmm</span></div>
+<!--l. 333-->
+<p class="nopar"><!--l. 335--></p>
+<p class="noindent">where rrrr is a username for a classmate who will receive the message, and mmmmmmm is the text of that message to be sent. Suitable checks should be made in your client code to ensure that the message can be sent to rrrr at that time. Once connected to the correct server, the format of the application PDU that is transmitted by the client is:</p>
+<div class="verbatim" id="verbatim-2"><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;::from</span><span class="pcrr7t-x-x-140">&nbsp;uuuu</span><span class="pcrr7t-x-x-140">&nbsp;mmmmmmmm</span></div>
+<!--l. 344-->
+<p class="nopar"><!--l. 346--></p>
+<p class="noindent">where uuuu is the username of the user running the client (e.g. you!), and mmmmmmm is the text of the message that is being sent. The information from uuuu should be stored at the receiving server as part of the message. <!--l. 351--></p>
+<p class="noindent">To discover the hostname and port number of a particular classmate&#8217;s server, I have provided a CSV file CS2003-usernames-2020.csv which your client program should treat as a flat-file database and use to generate the required information. Hint: you may wish to load this CSV file into a HashMap (refer back to CS1003). <!--l. 357--></p>
+<p class="noindent">For initial development you can send from your own client running on a lab machine to your own server running on your host server (i.e., the protocol does not preclude Alice from sending to Alice). But to completely test that you have fulfilled this requirement, you will need to coordinate with your classmates to test sending to their servers. This should be documented in your report.</p>
+</dd>
+<dt class="enumerate-enumitem">R9</dt>
+<dd class="enumerate-enumitem"><a id="x1-20099"></a> Note: Completing these final two Requirements may take a considerable amount of time compared to <a href="#x1-20011">R1<!--tex4ht:ref: req:tcp --></a>-<a href="#x1-20088">R8<!--tex4ht:ref: req:senders --></a>. Also, it could require a lot of additional coding, depending on how you have designed and implemented your program so far. Before you attempt this, please make sure you keep a working copy of your code and report which has <a href="#x1-20011">R1
+<!--tex4ht:ref: req:tcp --></a>-<a href="#x1-20088">R8<!--tex4ht:ref: req:senders --></a> implemented and documented. <!--l. 386-->
+<p class="noindent">As well as sending messages, allow the Java client to retrieve from the server all messages from today, or all messages from a previous day, by specifiying a date. <!--l. 390--></p>
+<p class="noindent">Use a simple session protocol as defined below. The user can enter the following message format at the client:</p>
+<div class="verbatim" id="verbatim-3"><span class="pcrr7t-x-x-140">&nbsp;::fetch</span><span class="pcrr7t-x-x-140">&nbsp;[date]</span><span class="pcrr7t-x-x-140">&nbsp;</span></div>
+<!--l. 393-->
+<p class="nopar"><!--l. 395--></p>
+<p class="noindent">The string [date] indicates that the date is optional (hence the square brackets &#8211; you would not type those as a user). If a date is not provided by the user, then the client should use today&#8217;s date. The application PDU sent to the server is:</p>
+<div class="verbatim" id="verbatim-4"><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;::fetch</span><span class="pcrr7t-x-x-140">&nbsp;date</span></div>
+<!--l. 402-->
+<p class="nopar"><!--l. 404--></p>
+<p class="noindent">If the date is determined by the server to be valid (i.e., in %Y-%m-%d form such as 2020-12-25), then all messages from that date should be returned to the client using the following application PDU format:</p>
+<div class="verbatim" id="verbatim-5"><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;::messages</span><span class="pcrr7t-x-x-140">&nbsp;date</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;tttttt</span><span class="pcrr7t-x-x-140">&nbsp;mmmmmmmm</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;tttttt</span><span class="pcrr7t-x-x-140">&nbsp;mmmmmmmm</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;tttttt</span><span class="pcrr7t-x-x-140">&nbsp;mmmmmmmm</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;[</span><span class="pcrr7t-x-x-140">&nbsp;...</span><span class="pcrr7t-x-x-140">&nbsp;continuing</span><span class="pcrr7t-x-x-140">&nbsp;list</span><span class="pcrr7t-x-x-140">&nbsp;of</span><span class="pcrr7t-x-x-140">&nbsp;messages</span><span class=
+"pcrr7t-x-x-140">&nbsp;..</span><span class="pcrr7t-x-x-140">&nbsp;]</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;::end</span></div>
+<!--l. 416-->
+<p class="nopar"><!--l. 418--></p>
+<p class="noindent">where date is the date of the message list, tttttt is the specific timestamp for each message, and mmmmmmmm is the body of the text sent by the user, which includes the from uuuu (as in <a href="#x1-20088">R8<!--tex4ht:ref: req:senders --></a>) for each message. There is one message per line. <!--l. 423--></p>
+<p class="noindent">If the date is valid, but there are no messages for that date, the server&#8217;s response should be the application PDU:</p>
+<div class="verbatim" id="verbatim-6"><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;::none</span></div>
+<!--l. 428-->
+<p class="nopar"><!--l. 430--></p>
+<p class="noindent">If no valid date is determined by the server, or there is some other error, then the server&#8217;s response should be the application PDU:</p>
+<div class="verbatim" id="verbatim-7"><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;::error</span></div>
+<!--l. 435-->
+<p class="nopar"></p>
+</dd>
+<dt class="enumerate-enumitem">R10</dt>
+<dd class="enumerate-enumitem"><a id="x1-201010"></a> Extend your server so that it can use one or more queues to deal with requests from multiple users. You can adapt the code given in exercise classes as required (but remember to attribute). <!--l. 461-->
+<p class="noindent">The Java client and server must be completed as described in Requirements <a href="#x1-20011">R1<!--tex4ht:ref: req:tcp --></a>-<a href="#x1-20066">R6<!--tex4ht:ref: req:problems --></a>, as an absolute minimum. <!--l. 465--></p>
+<p class="noindent">Please make sure that you have a working submission fulfilling the Requirements <a href="#x1-20011">R1<!--tex4ht:ref: req:tcp --></a>-<a href="#x1-20066">R6<!--tex4ht:ref: req:problems --></a> before you attempt any of the other Requirements. <!--l. 467--></p>
+<p class="noindent">There is example code on studres for you to use as you wish. You can also use any code examples distributed for the lab sessions. If you prefer, you can simply write all your own code. You should not need to use any third party code. <!--l. 472--></p>
+<p class="noindent">Once you have completed <a href="#x1-20011">R1<!--tex4ht:ref: req:tcp --></a>-<a href="#x1-20066">R6<!--tex4ht:ref: req:problems --></a>, you should attempt as many of the remaining requirements as you are able to within the time you have. <!--l. 476--></p>
+<p class="noindent">Hint: The server-side program does most of the work, saving the text to be displayed in a well-known place. The main role of the client program is to connect to the server program, using a TCP connection, and send a line of printable text and/or commands. This is why you have been provided with a simple client - the bulk of your time should be spent on developing the server.</p>
+</dd>
+</dl>
+<!--l. 485-->
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">2</span> <a id="x1-30002"></a>Example code and messages</h3>
+<!--l. 500-->
+<p class="noindent">In CS2003/Practicals/net2/ you will find:</p>
+<ul class="itemize1">
+<li class="itemize">The file cs2003-net2.php, which needs to be served by the School web servers. You should copy this file to a directory called: <!--l. 508-->
+<p class="noindent">~/nginx_default/cs2003-net2/ <!--l. 510--></p>
+<p class="noindent">and rename it index.php.</p>
+</li>
+<li class="itemize">Two directories, 2020-09-20/ and 2020-09-24/, which can also be copied to the same directory: these contain examples of the messages, including filenames, that conform to the description given below in Section&nbsp;<a href="#x1-40003">3<!--tex4ht:ref: s:how --></a>, How the web page works.</li>
+<li class="itemize">The configuration file cs2003-net2.properties which you should use and extend as needed (see Requirement&nbsp;<a href="#x1-20055">R5<!--tex4ht:ref: req:config --></a>). Your programs MUST use the variable names listed in this file. The Java file Configuration.java can be used to process this configuration file, but you are also welcome to write your own code to do this.</li>
+<li class="itemize">The files DirAndFile.java and TimeStamp.java, which you can use as you wish.</li>
+<li class="itemize">The file CS2003-usernames-2020.csv, which you will need for attempting Requirement&nbsp;<a href="#x1-20088">R8<!--tex4ht:ref: req:senders --></a>.</li>
+</ul>
+<!--l. 533-->
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">3</span> <a id="x1-40003"></a>How the web page works</h3>
+<!--l. 536-->
+<p class="noindent">A very simple web page has been written for you to use directly: you do not need to change anything in that web page &#8211; it will just work. <!--l. 539--></p>
+<p class="noindent">You should copy the file cs2003-net2.php to the directory ~/nginx_default/cs2003-net2/, and rename it to index.php, so that it looks similar to Figure <a href="#x1-40012">2<!--tex4ht:ref: f:web-page --></a> and be visible via: <!--l. 544--></p>
+<p class="noindent"><a href="https://%3Cyour-username%3E.host.cs.st-andrews.ac.uk/cs2003-net2/" class="url">https://&#10216;your-username&#10217;.host.cs.st-andrews.ac.uk/cs2003-net2/</a> <!--l. 546--></p>
+<p class="noindent"></p>
+<hr class="figure" />
+<div class="figure"><a id="x1-40012"></a> <!--l. 548-->
+<p class="noindent"><img src="figures/php_screenshot.png" alt="PIC" /><br /></p>
+<div class="caption"><span class="id">Figure&nbsp;2:</span> <span class="content">Example: The web page accessed in Firefox (note that your URL will be different).</span></div>
+<!--tex4ht:label?: x1-40012 -->
+<!--l. 550-->
+<p class="noindent"></p>
+</div>
+<hr class="endfigure" />
+<!--l. 552-->
+<p class="noindent">The web page is not required for your code to work, but it can be used as a simple testing tool. It is designed to read files stored as follows:</p>
+<ul class="itemize1">
+<li class="itemize">In the same directory as the index.php file, it looks for a directory with the name: <!--l. 560-->
+<p class="noindent">YYYY-MM-DD <!--l. 562--></p>
+<p class="noindent">representing YYYY as the year, MM as the month, and DD as the day, e.g. <!--l. 564--></p>
+<p class="noindent">2020-09-24</p>
+</li>
+<li class="itemize">Within that directory, the web-page code assumes there are text files containing the messages, with each file named with a timestamp, like this: <!--l. 569-->
+<p class="noindent">YYYY-MM-DD_HH-mm-ss.SSS <!--l. 571--></p>
+<p class="noindent">with year, month and day as above, followed by HH hours, mm minutes, ss seconds and SSS milliseconds, e.g.: <!--l. 573--></p>
+<p class="noindent">2020-09-19_07-32-27.209 <!--l. 575--></p>
+<p class="noindent">The WWW page uses the filename as a timestamp, and this is how it &#8216;knows&#8217; which messages are most recent. So, your Java server program must put the messages in the correct directory, with the correct filename. (The code in cs2003-net2.php is very simple, and does very little checking of it its input.)</p>
+</li>
+</ul>
+<h3 class="likesectionHead"><a id="x1-50003"></a>Submission</h3>
+<!--l. 586-->
+<p class="noindent">A single file containing your code and report in ZIP format must be submitted electronically via MMS by the deadline. Submissions in any other format will be rejected. <!--l. 595--></p>
+<p class="noindent">Specifically, your submission should contain: <!--l. 598--></p>
+<p class="noindent"></p>
+<dl class="description">
+<dt class="description">Java Code.</dt>
+<dd class="description">A single directory with all the source code (.java files) and configuration files (i.e., cs2003-net2.properties) needed to compile and run your application. This directory should include a server program that compiles and executes from the School Linux host servers, and a client program that compiles and executes from the command line on the School Linux lab machines. It should be possible for a marker to run javac *.java in that directory and compile your programs, ready to run
+with java. You should not use any third party code, libraries, or environments. If the marker cannot compile or run the code you have submitted on the School&#8217;s Linux machines, then you will not be given full credit for your solution.</dd>
+<dt class="description">Report.</dt>
+<dd class="description">A single PDF file which is a report with the usual School structure. In your report, where appropriate, try to concentrate on why you did something rather than just explaining what the code does:
+<ul class="itemize1">
+<li class="itemize">A simple guide to running your programs.</li>
+<li class="itemize">A summary of the functioning of your programs, indicating the level of completeness with respect to the Requirements listed above.</li>
+<li class="itemize">Use diagrams showing to show the design of your programs, especially if you have attempted Requirements <a href="#x1-20088">R8<!--tex4ht:ref: f:web-page --></a>&#8211;<a href="#x1-201010">R10<!--tex4ht:ref: f:web-page --></a>.</li>
+<li class="itemize">An indication of how you tested your application, including appropriate screenshots of the WWW page showing your application working. If you have designed and implemented Requirements <a href="#x1-20088">R8<!--tex4ht:ref: f:web-page --></a>&#8211;<a href="#x1-201010">R10<!--tex4ht:ref: f:web-page --></a>, then testing and evidence of operation of those extensions should also be provided.</li>
+<li class="itemize">An accurate summary (e.g. a table) stating which files or code fragments you have written yourself, any code you have modified from that which was given out as examples, or any code which you have sourced from elsewhere.</li>
+<li class="itemize">The names of anyone you collaborated with during the assignment (please read Section&nbsp;<a href="#x1-60004">4<!--tex4ht:ref: f:web-page --></a>, A note on collaboration, below).</li>
+</ul>
+<!--l. 643-->
+<p class="noindent">Please first build a working solution meeting the Requirements <a href="#x1-20011">R1<!--tex4ht:ref: f:web-page --></a>&#8211;<a href="#x1-20055">R5<!--tex4ht:ref: f:web-page --></a>, before trying anything more complex. Attempts at Requirements <a href="#x1-20066">R6<!--tex4ht:ref: f:web-page --></a>&#8211;<a href="#x1-201010">R10<!--tex4ht:ref: f:web-page --></a> will stand you a better chance of getting a higher mark for your work. <!--l. 652--></p>
+<p class="noindent">Your final mark will depend on the overall quality of your submission, both the code and the report. Attempting more of the Requirements will only get you a better mark if the quality of your submission is also sufficient.</p>
+</dd>
+</dl>
+<!--l. 656-->
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">4</span> <a id="x1-60004"></a>A note on collaboration</h3>
+<!--l. 659-->
+<p class="noindent">I encourage you to discuss this assignment with your classmates, though, of course, the code and the report that you submit should be your own work. <!--l. 662--></p>
+<p class="noindent">For Requirement <a href="#x1-20088">R8<!--tex4ht:ref: req:senders --></a>, you may want to test your implementation with a classmate. You should indicate in your report if you did this and who with. <!--l. 665--></p>
+<p class="noindent"></p>
+<h3 class="likesectionHead"><a id="x1-70004"></a>Policies and Guidelines</h3>
+<div class="framedenv" id="shaded-1"><!--l. 665-->
+<p class="noindent">Marking<br />
+See the standard mark descriptors in the School Student Handbook:<br />
+<a href="https://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/feedback.html#Mark_Descriptors" class="url">https://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/feedback.html#Mark_Descriptors</a> <!--l. 665--></p>
+<p class="noindent">Lateness penalty<br />
+The standard penalty for late submission applies (Scheme B: 1 mark per 8 hour period, or part thereof):<br />
+<a href="https://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/assessment.html#lateness-penalties" class="url">https://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/assessment.html#lateness-penalties</a> <!--l. 665--></p>
+<p class="noindent">Good academic practice<br />
+The University policy on Good Academic Practice applies:<br />
+<a href="https://www.st-andrews.ac.uk/students/rules/academicpractice/" class="url">https://www.st-andrews.ac.uk/students/rules/academicpractice/</a></p>
+</div>
+</body>
+</html>

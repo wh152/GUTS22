@@ -1,0 +1,43 @@
+/*
+** Saleem Bhatti, saleem@st-andrews,ac,uk, Aug 2014
+*/
+
+body {
+	font-family: Calibri, HelveticaNeue-Light, HelveticaNeue, Arial, Verdana, sans-serif;
+	font-size: 14px;
+	margin: 1rem 0.5rem 0.5rem 1rem;
+	background: snow; /* #f1f1f1; */
+	color: dimgray; /* #1f1f1f; */
+	text-align: left;
+	line-height: 1.5rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+strong {
+	font-style: italic;
+	font-weight: normal;
+	color: green;
+}
+
+a {
+  background: transparent; 
+  border: 0;
+  color: blue;
+  text-decoration: none;
+}
+
+a:hover {
+  background: lavender;
+}
+
+mypagetitle {
+	font-size: 2.25rem;
+	font-weight: bold;
+	text-align: left;
+	vertical-align: middle;
+}

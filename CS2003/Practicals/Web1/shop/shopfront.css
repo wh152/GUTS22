@@ -1,0 +1,75 @@
+* {
+  font-family: Arial;
+}
+
+stock_list {
+  padding: 0;
+  spacing: 0.1rem;
+  border-collapse: collapse;
+  display: table;
+}
+
+stock_item {
+  border-spacing: 0.4rem;
+  padding: 0.5rem;
+  display: table-row;
+}
+
+item_photo {
+  text-align: center;
+  vertical-align: middle;
+  border-spacing: 0.4rem;
+  padding: 0.5rem;
+  display: table-cell;
+}
+
+item_name {
+  vertical-align: middle;
+  border-spacing: 0.4rem;
+  padding: 0.5rem;
+  display: table-cell;
+}
+
+item_info {
+  vertical-align: middle;
+  border-spacing: 0.4rem;
+  padding: 0.5rem;
+  display: table-cell;
+}
+
+item_quantity {
+  text-align: center;
+  vertical-align: middle;
+  border-spacing: 0.4rem;
+  padding: 0.5rem;
+  display: table-cell;
+}
+
+item_price {
+  text-align: right;
+  vertical-align: middle;
+  border-spacing: 0.4rem;
+  padding: 0.5rem;
+  display: table-cell;
+}
+
+line_cost {
+  border-spacing: 0.4rem;
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5rem;
+  display: table-cell;
+}
+
+.heading {
+  background-color: blue;
+  color: white;
+}
+
+.yes {
+  background-color: lightgreen;
+}
+
+.no {
+  background-color: lightcoral;
+}

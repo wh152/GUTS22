@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+Cookie demo for CS2003
+Saleem Bhatti, Sep 2018
+-->
+
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>Cookie Snooper</title>
+</head>
+
+<body>
+
+<h1>Cookie Snooper</h1>
+
+<br />
+<script src="cookie.js"></script>
+<script>
+  let visits;
+  let user;
+
+  if (!(visits = getCookie("visits"))) { visits = "(no data)"; }
+
+  if (!(user = getCookie("user"))) { user = "(no data)"; }
+
+  document.write("I know that <b style='color: green;'>"
+                + user +
+                "</b> visited my other site <b style='color: green;'>"
+                + visits +
+                "</b> time(s).");
+</script>
+
+</body>
+</html>

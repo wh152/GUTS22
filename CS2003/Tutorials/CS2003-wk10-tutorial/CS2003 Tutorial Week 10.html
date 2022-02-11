@@ -1,0 +1,57 @@
+<p><strong>1. Call backs</strong></p>
+<blockquote>
+<p>The code referred to below is in:</p>
+<p>https://studres.cs.st-andrews.ac.uk/CS2003/Examples/web/node/web4/node-events-tute/</p>
+</blockquote>
+<p>Run the following examples:</p>
+<ol type="I">
+<li><p>async_demo.js</p></li>
+<li><p>event_demo.js</p></li>
+</ol>
+<ol type="a">
+<li><p>Discuss why or why the output is as it appears for each</p></li>
+</ol>
+<ol start="2" type="a">
+<li><p>In the lectures we looked at how asynchronous events are handled in node. Come to the tutorial ready to explain to your tutor how this works.</p></li>
+</ol>
+<ol start="3" type="a">
+<li><p>Write one of two small programs that further illustrate what is happening in these examples</p></li>
+</ol>
+<p><strong>2. Promises</strong></p>
+<p>Consider this function:</p>
+<blockquote>
+<p>function getImage(url){</p>
+<p>return new Promise( function(resolve, reject){</p>
+<p>var img = new Image()</p>
+<p>img.onload = function(){<br />
+resolve(url)<br />
+}</p>
+<p>img.onerror = function(){<br />
+reject(url)<br />
+}</p>
+<p>img.src = url</p>
+<p>} )</p>
+<p>}</p>
+</blockquote>
+<ol type="a">
+<li><p>Explain what the getImage() function does.</p></li>
+</ol>
+<ol start="2" type="a">
+<li><p>Show how you would use this method and assign a fetched url – bob.jpg to an HTML element with the Id ‘bobspicture’.</p></li>
+</ol>
+<ol start="3" type="a">
+<li><p>Suppose instead of one image you have an array of image URLs how might you assign these to slots in a web page – in a similar manner to the way SkyScanner paints in flight details.</p></li>
+</ol>
+<ol start="4" type="a">
+<li><p>Considering the Skyscanner example again, how might you use Promises when the server might take a long time to perform a lengthy query (like finding the cheapest flights to Newark via Dublin from Edinburgh on some day).</p></li>
+</ol>
+<p><strong>3. Cookies and Storage</strong></p>
+<blockquote>
+<p>The code referred to below is in:</p>
+<p>https://studres.cs.st-andrews.ac.uk/CS2003/Examples/web/node/web4/cookie-tute/<br />
+and<br />
+https://studres.cs.st-andrews.ac.uk/CS2003/Examples/web/node/web4/localstorage-tute/</p>
+</blockquote>
+<ol type="a">
+<li><p>For the code in cookie-tute/ and localstorage-tute/, compare the two mechanisms in terms of API, and visibility of the cookie/state. Modify the textsize.js and textsize.html files so that the font can be chosen (from a selection of 4 or 5 fonts of your choice), and text colour can also be chosen, and both can be ‘saved’, to be re-instated when the page is revisited after the browser has been closed. Also include a popup/dialogue that confirms the user’s permission to save these preferences.</p></li>
+</ol>

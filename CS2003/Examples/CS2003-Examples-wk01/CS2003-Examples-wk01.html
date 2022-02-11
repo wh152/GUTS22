@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.2.0" />
+<title>Some Linux network tools and socket programming</title>
+<meta charset="iso-8859-1" />
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="\aa:CssFile" />
+<meta name="src" content="CS2003-Examples-wk01.tex" />
+</head>
+<body>
+<div class="maketitle">University of St Andrews School of Computer Science<br />
+<br />
+CS2003&nbsp;&#8212;&nbsp;Internet and the Web&nbsp;&#8212;&nbsp;2020/21 &nbsp;<br />
+Exercise&nbsp;1:
+<h2 class="titleHead">Some Linux network tools and socket programming</h2>
+<br />
+Date: 2020-09-xx<br /></div>
+<!--l. 24-->
+<p class="noindent">As with all lab exercises, this exercise is not directly assessed. It is intended to complement the material presented in lectures and may turn up in the exam. You are encouraged to complete it in your own time if you do not finish during the scheduled exercise class time. You are also encouraged to work with other people in the class to complete the exercises &#8212; you can also work on the exercise classes during lab sessions and use the relevant Teams channels to discuss things with
+each other or to ask for help from a demonstrator. <!--l. 38--></p>
+<p class="noindent">This exercise class will take place on Teams, in particular the &#8220;2020/1 Second Year Computer Science&#8221; Team. The meeting is entitled &#8220;CS2003 Week 1 Exercise Class&#8221;. If you cannot find it in Microsoft Teams, then you can try this URL: <a href=
+"https://teams.microsoft.com/l/meetup-join/19%3ab4ae4a21ba9b40188ecc458330ed99bc%40thread.tacv2/1600076902684?context=%7b%22Tid%22%3a%22f85626cb-0da8-49d3-aa58-64ef678ef01a%22%2c%22Oid%22%3a%22ad2fcb36-eb79-431d-8540-225ffbc71158%22%7d" class=
+"url">https://teams.microsoft.com/l/meetup-join/19%3ab4ae4a21ba9b40188ecc458330ed99bc%40thread.tacv2/1600076902684?context=%7b%22Tid%22%3a%22f85626cb-0da8-49d3-aa58-64ef678ef01a%22%2c%22Oid%22%3a%22ad2fcb36-eb79-431d-8540-225ffbc71158%22%7d</a> <!--l. 40--></p>
+<p class="noindent">The aim of this exercise class is to use the Linux command line interface (CLI) and some simple Java programs to explore some basic client-server communications, using some simple Internet protocols. You can access the Linux command line on a lab client by using an SSH client application to log in. This brings up a shell, in which you can type commands. The key sequence &#8216;CTRL-C&#8217; can be used to stop running programs from the command line. In this document, when you see $ next
+to a word like this:</p>
+<div class="verbatim" id="verbatim-1"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;id</span></div>
+<!--l. 51-->
+<p class="nopar"><!--l. 53--></p>
+<p class="noindent">that is the &#8216;prompt&#8217; from the shell, and what is next to it (in this case id) is what you need to type.</p>
+<h3 class="sectionHead"><span class="titlemark">1</span> <a id="x1-10001"></a>Logging into a CS host</h3>
+<!--l. 58-->
+<p class="noindent">Start by using SSH to log in to one of the lab clients. If you are in the lab, then you should make sure that the machine that you are using is booted into Linux. <!--l. 62--></p>
+<p class="noindent">If you are working remotely, you should use one of the clients listed at <a href="https://systems.wiki.cs.st-andrews.ac.uk/index.php/Lab_PCs#Remotely_Accessible_Linux_Clients" class="url">https://systems.wiki.cs.st-andrews.ac.uk/index.php/Lab_PCs#Remotely_Accessible_Linux_Clients</a> <!--l. 66--></p>
+<p class="noindent">You should also read <a href="https://systems.wiki.cs.st-andrews.ac.uk/index.php/Working_remotely#Host_service_and_SSH" class="url">https://systems.wiki.cs.st-andrews.ac.uk/index.php/Working_remotely#Host_service_and_SSH</a> <!--l. 69--></p>
+<p class="noindent">If you are accessing the CS systems from outside of the University network, you will first need to log in to one of the host servers and from there access one of the lab clients. For instance, you might do</p>
+<div class="verbatim" id="verbatim-2"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;ssh</span><span class="pcrr7t-x-x-140">&nbsp;&lt;username&gt;@&lt;username&gt;.host.cs.st-andrews.ac.uk</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;ssh</span><span class="pcrr7t-x-x-140">&nbsp;&lt;username&gt;@pcY-XXX-l.cs.st-andrews.ac.uk</span></div>
+<!--l. 76-->
+<p class="nopar">(where &lt;username&gt; is replaced with your CS username, and pcY-XXX-l.cs.st-andrews.ac.uk is one of the lab clients listed at <a href="https://systems.wiki.cs.st-andrews.ac.uk/index.php/Lab_PCs#Remotely_Accessible_Linux_Clients" class="url">https://systems.wiki.cs.st-andrews.ac.uk/index.php/Lab_PCs#Remotely_Accessible_Linux_Clients</a>) <!--l. 82--></p>
+<p class="noindent">Alternatively you can set up a proxy or use a jump host as outlined in the wiki (<a href="https://systems.wiki.cs.st-andrews.ac.uk/index.php/Working_remotely#SSH_proxy" class="url">https://systems.wiki.cs.st-andrews.ac.uk/index.php/Working_remotely#SSH_proxy</a>). But for now I suggest you just log in to a host server and then a lab client. <!--l. 88--></p>
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">2</span> <a id="x1-20002"></a>Check that your environment is correct</h3>
+<!--l. 90-->
+<p class="noindent">For compiling and running Java code, please use javac and java from the Linux CLI. Note: There are several Java compilers on the School machines. If you type:</p>
+<div class="verbatim" id="verbatim-3"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;which</span><span class="pcrr7t-x-x-140">&nbsp;java</span><span class="pcrr7t-x-x-140">&nbsp;javac</span></div>
+<!--l. 96-->
+<p class="nopar"><!--l. 98--></p>
+<p class="noindent">you should see:</p>
+<div class="verbatim" id="verbatim-4"><span class="pcrr7t-x-x-140">/usr/local/amazon-corretto-11/bin/java</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">/usr/local/amazon-corretto-11/bin/javac</span></div>
+<!--l. 103-->
+<p class="nopar"><!--l. 108--></p>
+<p class="noindent">If you do not see this output, then please contact someone from Systems Group (fixit@cs.st-andrews.ac.uk) and explain that your default Java installation appears not to be the Amazon Corretto installation. <!--l. 111--></p>
+<p class="noindent">For editing code on a remote host, I recommend using a text editor that is installed on the lab machines to edit files there directly. Some possibilities include nano, vim or emacs (in order of difficulty). There are a number of video tutorials on the systems wiki that can help here: <a href="https://systems.wiki.cs.st-andrews.ac.uk/index.php/Video_tutorials" class="url">https://systems.wiki.cs.st-andrews.ac.uk/index.php/Video_tutorials</a> In particular I recommend that you view the
+Systems briefing on command-line Java at <a href="https://st-andrews.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=5de01a4a-63b2-4565-b701-ac3300ce93c5" class="url">https://st-andrews.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=5de01a4a-63b2-4565-b701-ac3300ce93c5</a> <!--l. 121--></p>
+<p class="noindent">IMPORTANT: Do not use VS Code or similar &#8220;remote ssh&#8221; functionality to edit code directly on the host servers. The host servers are not designed for this, and indeed it is poor programming practice, as outlined in Section&nbsp;<a href="#x1-1900011.6">11.6<!--tex4ht:ref: remote-code --></a>. You may wish to do this on the lab clients, but it is not advised. <!--l. 127--></p>
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">3</span> <a id="x1-30003"></a>port number for a server</h3>
+<!--l. 129-->
+<p class="noindent">Now you will try to run a server. To do this you will need to choose a port number for running a server process. On the command line, type:</p>
+<div class="verbatim" id="verbatim-5"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;id</span></div>
+<!--l. 133-->
+<p class="nopar"><!--l. 135--></p>
+<p class="noindent">and you should see output, where the first part looks like this:</p>
+<div class="verbatim" id="verbatim-6"><span class="pcrr7t-x-x-140">uid=DDDDD(uuuu)</span></div>
+<!--l. 139-->
+<p class="nopar"><!--l. 141--></p>
+<p class="noindent">where DDDDD is a decimal number (should be greater than 10000), and uuuu is your username (login ID). The value DDDDD is the value you should use for a port number when you need to start a server program. Each student should use their own port number to avoid servers clashing. <!--l. 147--></p>
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">4</span> <a id="x1-40004"></a>nc</h3>
+<!--l. 149-->
+<p class="noindent">nc (netcat) is a command line interface to the socket API. First, familiarise yourself with the nc command by reading the manual page i.e., man nc. <!--l. 152--></p>
+<p class="noindent">Open two terminal windows on your lab client (or two terminal windows with ssh connections if you are connecting remotely). In one terminal window, start nc listening on a specific port for a connection. Use your port number, for example:</p>
+<div class="verbatim" id="verbatim-7"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;nc</span><span class="pcrr7t-x-x-140">&nbsp;-l</span><span class="pcrr7t-x-x-140">&nbsp;&lt;n&gt;</span></div>
+<!--l. 159-->
+<p class="nopar"><!--l. 161--></p>
+<p class="noindent">You should replace &lt;n&gt; with y our own port number (see above). nc is now listening on port &lt;n&gt; for an incoming connection, just as a server application might. In your second window, connect to the port being listened on using the special loopback address 127.0.0.1:</p>
+<div class="verbatim" id="verbatim-8"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;nc</span><span class="pcrr7t-x-x-140">&nbsp;127.0.0.1</span><span class="pcrr7t-x-x-140">&nbsp;&lt;n&gt;</span></div>
+<!--l. 169-->
+<p class="nopar"><!--l. 171--></p>
+<p class="noindent">There should now be a TCP connection between these ports. Anything typed at the second terminal will be sent to the first, and vice versa. After the connection has been set up, nc does not care which side started as a server and which side started as a client: the TCP connection is bi-directional (duplex). The connection can be terminated using CTRL-D. <!--l. 178--></p>
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">5</span> <a id="x1-50005"></a>netstat</h3>
+<!--l. 180-->
+<p class="noindent">The netstat command can be used to list open TCP sockets on the local machine. In a separate terminal window, type:</p>
+<div class="verbatim" id="verbatim-9"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;netstat</span><span class="pcrr7t-x-x-140">&nbsp;-plnt</span></div>
+<!--l. 185-->
+<p class="nopar"><!--l. 187--></p>
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">6</span> <a id="x1-60006"></a>Communicating between two different hosts</h3>
+<!--l. 189-->
+<p class="noindent">Use nc to communicate using two different nodes. Open a terminal window and ssh into a different lab client. Once you have logged into a machine you will need to know its IP address and/or name. To find out the name and IPv4 address of a Linux system use the commands:</p>
+<div class="verbatim" id="verbatim-10"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;hostname</span><span class="pcrr7t-x-x-140">&nbsp;-f</span></div>
+<!--l. 196-->
+<p class="nopar"><!--l. 198--></p>
+<p class="noindent">and:</p>
+<div class="verbatim" id="verbatim-11"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;hostname</span><span class="pcrr7t-x-x-140">&nbsp;-i</span></div>
+<!--l. 202-->
+<p class="nopar"><!--l. 204--></p>
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">7</span> <a id="x1-70007"></a>Daytime protocol (RFC867)</h3>
+<!--l. 206-->
+<p class="noindent">Look at the Daytime protocol standard (RFC867 &#8211; <a href="https://tools.ietf.org/html/rfc867" class="url">https://tools.ietf.org/html/rfc867</a>). Select a server from the list of time servers at <a href="http://tf.nist.gov/tf-cgi/servers.cgi" class="url">http://tf.nist.gov/tf-cgi/servers.cgi</a>, or alternatively use minervamedia.cs.st-andrews.ac.uk. Use nc to access a time server on the Daytime protocol port 13. <!--l. 212--></p>
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">8</span> <a id="x1-80008"></a>ping</h3>
+<!--l. 214-->
+<p class="noindent">The result returned from the Daytime protocol is not completely accurate due to the delay between the client and the server. This can be estimated from the round trip time (RTT) returned by the ping command e.g.:</p>
+<div class="verbatim" id="verbatim-12"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;ping</span><span class="pcrr7t-x-x-140">&nbsp;ntp1.ja.net</span></div>
+<!--l. 220-->
+<p class="nopar"><!--l. 222--></p>
+<p class="noindent">or:</p>
+<div class="verbatim" id="verbatim-13"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;ping</span><span class="pcrr7t-x-x-140">&nbsp;minervamedia.cs.st-andrews.ac.uk</span></div>
+<!--l. 226-->
+<p class="nopar"><!--l. 228--></p>
+<p class="noindent">Are the RTT times shown always the same? If not, why do you think they are different? <!--l. 230--></p>
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">9</span> <a id="x1-90009"></a>echo and chargen</h3>
+<!--l. 232-->
+<p class="noindent">The Echo (<a href="https://tools.ietf.org/html/rfc862">RFC862</a>) and Chargen (<a href="https://tools.ietf.org/html/rfc864">RFC864</a>) protocols date from the same early Internet period as the Daytime protocol. Use nc to connect to the servers for these protocols at minervamedia.cs.st-andrews.ac.uk to see their function. <!--l. 238--></p>
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">10</span> <a id="x1-1000010"></a>Daytime protocol client</h3>
+<!--l. 240-->
+<p class="noindent">Copy the DayTimeClient.java client code from studres to your own home directory. Examine the source code, compile and run the program. <!--l. 243--></p>
+<p class="noindent">For instance, you might do</p>
+<div class="verbatim" id="verbatim-14"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;mkdir</span><span class="pcrr7t-x-x-140">&nbsp;~/CS2003</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;cp</span><span class="pcrr7t-x-x-140">&nbsp;/cs/studres/CS2003/Examples/CS2003-Examples-wk01/DayTimeClient.java</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;~/CS2003</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;cd</span><span class="pcrr7t-x-x-140">&nbsp;~/CS2003</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;nano</span><span class="pcrr7t-x-x-140">&nbsp;DayTimeClient.java</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;javac</span><span class="pcrr7t-x-x-140">&nbsp;DayTimeClient.java</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;java</span><span class="pcrr7t-x-x-140">&nbsp;DayTimeClient</span></div>
+<!--l. 252-->
+<p class="nopar"><!--l. 254--></p>
+<p class="noindent">(to exit the nano text editor you should type CTRL-C &#8212; there is a menu at the bottom of the screen with some common shortcuts. For more help please view the video tutorial mentioned at the start of this document.) <!--l. 278--></p>
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">11</span> <a id="x1-1100011"></a>A simple server</h3>
+<!--l. 280-->
+<p class="noindent"></p>
+<h4 class="subsectionHead"><span class="titlemark">11.1</span> <a id="x1-1200011.1"></a>Compile and set-up</h4>
+<!--l. 282-->
+<p class="noindent">Choose a port number as outlined at the beginning of this exercise sheet. Then edit TcpServerSimpleNB.java and assign this value to the variable port_. (NB: as you are doing this, have a think about compile-time versus run-time configuration. Does it make sense to have to recompile a program to change a port number?) <!--l. 289--></p>
+<p class="noindent">Use javac to compile the files TcpClientSimpleNB.java and TcpServerSimpleNB.java. <!--l. 293--></p>
+<p class="noindent">Then connect to an additional lab client and do the same so that you can run a client on one machine and a server on another. <!--l. 296--></p>
+<p class="noindent"></p>
+<h4 class="subsectionHead"><span class="titlemark">11.2</span> <a id="x1-1300011.2"></a>Running the server</h4>
+<!--l. 298-->
+<p class="noindent">On one of the machines that we will call hostA, start the server, for example:</p>
+<div class="verbatim" id="verbatim-15"><span class="pcrr7t-x-x-140">hostA</span><span class="pcrr7t-x-x-140">&nbsp;$</span><span class="pcrr7t-x-x-140">&nbsp;java</span><span class="pcrr7t-x-x-140">&nbsp;TcpServerSimpleNB</span></div>
+<!--l. 302-->
+<p class="nopar"><!--l. 304--></p>
+<p class="noindent">Make sure that the program starts (a message will appear). <!--l. 306--></p>
+<p class="noindent">From the other machine (we will call it hostB), connect to the server using nc, e.g.:</p>
+<div class="verbatim" id="verbatim-16"><span class="pcrr7t-x-x-140">hostB</span><span class="pcrr7t-x-x-140">&nbsp;$</span><span class="pcrr7t-x-x-140">&nbsp;nc</span><span class="pcrr7t-x-x-140">&nbsp;hostA.cs.st-andrews.ac.uk</span><span class="pcrr7t-x-x-140">&nbsp;&lt;n&gt;</span></div>
+<!--l. 311-->
+<p class="nopar"><!--l. 313--></p>
+<p class="noindent">You should use your own port number in place of &lt;n&gt;. Then, type something at hostB and observe the behaviour. (What you typed should be sent back to you by the server.) <!--l. 317--></p>
+<p class="noindent">The server will quit. <!--l. 319--></p>
+<p class="noindent"></p>
+<h4 class="subsectionHead"><span class="titlemark">11.3</span> <a id="x1-1400011.3"></a>Running the client</h4>
+<!--l. 321-->
+<p class="noindent">Start the server again on hostA. <!--l. 323--></p>
+<p class="noindent">Then, from hostB, use the TCP client code to connect:</p>
+<div class="verbatim" id="verbatim-17"><span class="pcrr7t-x-x-140">hostB</span><span class="pcrr7t-x-x-140">&nbsp;$</span><span class="pcrr7t-x-x-140">&nbsp;java</span><span class="pcrr7t-x-x-140">&nbsp;TcpClientSimpleNB</span><span class="pcrr7t-x-x-140">&nbsp;hostA.cs.st-andrews.ac.uk</span><span class="pcrr7t-x-x-140">&nbsp;&lt;n&gt;</span></div>
+<!--l. 327-->
+<p class="nopar"><!--l. 329--></p>
+<p class="noindent">You should see similar behaviour as that to using nc. (There will be some additional text printed by the program.) <!--l. 333--></p>
+<p class="noindent"></p>
+<h4 class="subsectionHead"><span class="titlemark">11.4</span> <a id="x1-1500011.4"></a>Things to note</h4>
+<!--l. 335-->
+<p class="noindent"></p>
+<h5 class="subsubsectionHead"><span class="titlemark">11.4.1</span> <a id="x1-1600011.4.1"></a>Addresses and port numbers</h5>
+<!--l. 337-->
+<p class="noindent">At hostA, check the server is listening on its port number by again using netstat, e.g.:</p>
+<div class="verbatim" id="verbatim-18"><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;$</span><span class="pcrr7t-x-x-140">&nbsp;netstat</span><span class="pcrr7t-x-x-140">&nbsp;-plnt</span></div>
+<!--l. 342-->
+<p class="nopar"><!--l. 344--></p>
+<p class="noindent">Also, note the address information that is printed at the server (you will need to look at the code to see what is printed). Does it seem strange? (We will look at this later in the course, but for now, look at the documentation for ServerSocket.) <!--l. 349--></p>
+<p class="noindent"></p>
+<h5 class="subsubsectionHead"><span class="titlemark">11.4.2</span> <a id="x1-1700011.4.2"></a>Number of bytes sent/received</h5>
+<!--l. 351-->
+<p class="noindent">When running TCPClientSimpleNB, what do you notice about the number of bytes you type, and the number of bytes sent/received? In the code we have looked at so far, we &#8220;wrapped&#8221; the raw byte-stream From the TCP connection in the Java abstractions PrintWriter and BufferedReader. These treat the byte-stream as consisting of printable characters. However, the code in TcpClientSimpleNB.java and TcpServerSimpleNB.java access the InputStream and OutputStream from the Socket obejct,
+which give access to the &#8220;raw&#8221; byte-stream that forms the content of the TCP segments that are transmitted. <!--l. 362--></p>
+<p class="noindent"></p>
+<h4 class="subsectionHead"><span class="titlemark">11.5</span> <a id="x1-1800011.5"></a>Looking at the code</h4>
+<!--l. 364-->
+<p class="noindent">Notice the use of the ServerSocket in TcpServerSimpleNB.java. Recall that this is a &#8220;door&#8221; on which the server listens for incoming connection requests. The accept() method accepts incoming connection requests, and assigns a new Socket object to the connection. The ServerSocket is still available to accept other connections, if we reorganised our code to do that. Also, notice the use of the soTimeout() method. Look this up in the Java documentation. This makes the API for
+the connection non-blocking &#8211; the Socket operations can timeout, e.g. reading on a socket times out if there is nothing to read. This allows your program to do other things and remain &#8220;stuck&#8221; on that method call until something happens. This is purely an API issue, and is nothing to do with the operation of the TCP protocol. <!--l. 378--></p>
+<p class="noindent"></p>
+<h4 class="subsectionHead"><span class="titlemark">11.6</span> <a id="x1-1900011.6"></a>Running code on a host server</h4>
+<!--l. 381-->
+<p class="noindent">Up till now you have been working on the lab clients. For all of the practicals we would like your code to run on the host servers. This does not mean that you should edit your code on the host servers. Instead, you should develop on a lab client (or even your local machine), and then copy your code to the host servers to run there. This is generally good practice; you should develop code in a test environment and then deploy it to your production environment. <!--l. 389--></p>
+<p class="noindent">If you have developed on a lab client then there is very little that you need to do to copy your code to a host server. Your network home directory is available at /cs/home/&lt;username&gt; from both lab clients and host servers. So if you have been developing in your local home directory, you could do something similar to:</p>
+<div class="verbatim" id="verbatim-19"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;mkdir</span><span class="pcrr7t-x-x-140">&nbsp;-p</span><span class="pcrr7t-x-x-140">&nbsp;/cs/home/&lt;username&gt;/CS2003/Examples-wk01</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;cp</span><span class="pcrr7t-x-x-140">&nbsp;~/CS2003/TCPClientSimpleNB.java</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;/cs/home/&lt;username&gt;/CS2003/Examples-wk01/</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;ssh</span><span class="pcrr7t-x-x-140">&nbsp;&lt;username&gt;@&lt;username&gt;.host.cs.st-andrews.ac.uk</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;cd</span><span class="pcrr7t-x-x-140">&nbsp;/cs/home/&lt;username&gt;/CS2003/Examples-wk01/</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;javac</span><span class="pcrr7t-x-x-140">&nbsp;TCPClientSimpleNB.java</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;java</span><span class="pcrr7t-x-x-140">&nbsp;TCPClientSimpleNB</span></div>
+<!--l. 403-->
+<p class="nopar">(where &lt;username&gt; should be replaced with your CS username) <!--l. 406--></p>
+<p class="noindent">If you are developing on a local machine, then you can use SFTP to copy files to your network home directory (see <a href="https://systems.wiki.cs.st-andrews.ac.uk/index.php/Working_remotely#Accessing_your_home_directory" class="url">https://systems.wiki.cs.st-andrews.ac.uk/index.php/Working_remotely#Accessing_your_home_directory</a>) and then use ssh to log in to a host server, compile and run your code. <!--l. 411--></p>
+<p class="noindent"></p>
+<h4 class="subsectionHead"><span class="titlemark">11.7</span> <a id="x1-2000011.7"></a>Modifying the code</h4>
+<!--l. 413-->
+<p class="noindent">See if you can modify the code so that:</p>
+<ul class="itemize1">
+<li class="itemize">The server becomes an &#8220;echo&#8221; server: it keeps sending strings back to the client, as long as the client sends it things and is connected to the server.</li>
+<li class="itemize">The server does not quit after a client has disconnected, but remains waiting for another client. Hint: do not close the ServerSocket, and think about how accept() can be used if the ServerSocket is made non-blocking.</li>
+</ul>
+<!--l. 426-->
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">12</span> <a id="x1-2100012"></a>Some common Linux commands</h3>
+<!--l. 428-->
+<p class="noindent">A good online resource for such things is <a href="https://ss64.com" class="url">https://ss64.com</a>. <a id="x1-21001r1"></a><!--l. 432--></p>
+<div class="longtable">
+<table id="TBL-2" class="longtable" cellspacing="0" cellpadding="0">
+<colgroup id="TBL-2-1g">
+<col id="TBL-2-1" />
+<col id="TBL-2-2" /></colgroup>
+<tr style="vertical-align:baseline;" id="TBL-2-1-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-1-1" class="td11">cd &lt;path&gt;</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-1-2" class="td11">change directory</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-2-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-2-1" class="td11">cd ..</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-2-2" class="td11">change to parent directory</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-3-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-3-1" class="td11">cd</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-3-2" class="td11">change to home directory</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-4-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-4-1" class="td11">pwd</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-4-2" class="td11">print working (current) directory</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-5-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-5-1" class="td11">ls</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-5-2" class="td11">show/list contents of current directory</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-6-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-6-1" class="td11">ls -l</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-6-2" class="td11">long listing</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-7-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-7-1" class="td11">ls -t</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-7-2" class="td11">list in order of time created (reverse chronological order)</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-8-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-8-1" class="td11">ls -ld</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-8-2" class="td11">list this directory entry</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-9-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-9-1" class="td11">ls -R</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-9-2" class="td11">recursively list directory tree from this point</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-10-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-10-1" class="td11">cp</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-10-2" class="td11">copy file or directory</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-11-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-11-1" class="td11">rm</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-11-2" class="td11">remove (delete) a file</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-12-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-12-1" class="td11">rmdir</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-12-2" class="td11">remove (delete) a directory</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-13-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-13-1" class="td11">mv</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-13-2" class="td11">rename (move) a file or directory</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-14-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-14-1" class="td11">mkdir</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-14-2" class="td11">create a new directory</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-15-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-15-1" class="td11"></td>
+</tr>
+<tr class="vspace" style="font-size:14.05249pt">
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-16-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-16-1" class="td11">cat &lt;filename&gt;</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-16-2" class="td11">concatenate file (to screen)</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-17-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-17-1" class="td11">less &lt;filename&gt;</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-17-2" class="td11">show file (type q to quit)</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-18-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-18-1" class="td11">man &lt;command&gt;</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-18-2" class="td11">show manual page for this command</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-19-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-19-1" class="td11">more &lt;filename&gt;</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-19-2" class="td11">show file (type q to quit)</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-20-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-20-1" class="td11">nano &lt;filename&gt;</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-20-2" class="td11">a simple text editor</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-21-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-21-1" class="td11"></td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-21-2" class="td11"></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-22-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-22-1" class="td11"></td>
+</tr>
+<tr class="vspace" style="font-size:14.05249pt">
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-23-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-23-1" class="td11">ps</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-23-2" class="td11">process I am running</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-24-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-24-1" class="td11">ps -elf</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-24-2" class="td11">all process running</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-25-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-25-1" class="td11">ps -aux</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-25-2" class="td11">all proccess running</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-26-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-26-1" class="td11">kill &lt;process id&gt;</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-26-2" class="td11">terminate process</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-27-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-27-1" class="td11">netstat -plnt</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-27-2" class="td11">shows listening tcp sockets on the local machine</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-28-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-28-1" class="td11"></td>
+</tr>
+<tr class="vspace" style="font-size:14.05249pt">
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-29-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-29-1" class="td11">&lt;command&gt; &amp;</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-29-2" class="td11">run command in the background</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-30-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-30-1" class="td11">bg &lt;command&gt;</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-30-2" class="td11">run command in the background</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-31-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-31-1" class="td11">fg</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-31-2" class="td11">run in / bring to foreground (see man page)</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-32-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-32-1" class="td11">jobs</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-32-2" class="td11">show / list my jobs (typically processes in background)</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-33-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-33-1" class="td11">kill &lt;job number&gt;</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-33-2" class="td11">terminate job (kill process)</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-34-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-34-1" class="td11"></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-35-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-35-1" class="td11"></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-36-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-36-1" class="td11"></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-37-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-37-1" class="td11"></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-38-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-38-1" class="td11"></td>
+</tr>
+</table>
+</div>
+<!--l. 467-->
+<p class="noindent">For all of these commands you can find more help in the man pages; for instance man mkdir might help you understand why I used mkdir -p in one of the examples above. <!--l. 472--></p>
+<p class="noindent">Tristan Henderson, with thanks to Colin Allison, Saleem Bhatti and Ryo Yanagida</p>
+</body>
+</html>

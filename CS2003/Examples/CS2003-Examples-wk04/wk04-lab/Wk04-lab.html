@@ -1,0 +1,128 @@
+<p>As with all lab exercises, this exercise is not directly assessed. It is intended to complement the material presented in lectures, and may turn up in the exam. You are encouraged to complete it in your own time if you do not finish it during the lab hour.</p>
+<p>The aim this week is to become familiar with (i) the use of Javascript and Node.js for server-side processing; and (ii) client-side user input with server-side processing in Javascript. Specifically:</p>
+<ul>
+<li><blockquote>
+<p>There are basic examples of Javascript coding patterns to help you learn Javascript quickly. These can be found on Studres in CS2003/Examples/web/node/web2/node-01.</p>
+</blockquote></li>
+<li><p>An extended example for a simple application – a CS2003 ‘class homepage checker’ – is given, which brings together many of the basic examples. This is built up in stages so that you can see how the application is developed from the raw data source. The code can be found on studres in CS2003/Examples/web/node/web2/node-02/.</p></li>
+<li><p>A simple example of a ‘user registration form’, to show the use of HTML5 &lt;form&gt; and &lt;input&gt; tags, along with Javascript processing at the server-side. The code can be found on Studres in CS2003/Examples/web/node/web2/node-03/.</p></li>
+</ul>
+<p>These examples present simple versions of what might be used in industry, for example, but allow you the chance to see, discuss, and experiment with the source code. However, even with more complex code and libraries, many of the underlying concepts are similar.</p>
+<p>You should copy all of the files into your own file space for executing and editing, as you see fit. For web access, you will, of course, need to copy the files to your own web file space e.g.:</p>
+<blockquote>
+<p>~/node/cs2003/web2/</p>
+</blockquote>
+<p>Then, for example, script <em>01-hello_world_html.js</em> will be accessible via your virtual host as: https://&lt;userid&gt;.host.cs.st-andrews.ac.uk/cs2003/web2/01-hello_world_html.js</p>
+<p><em>Please note that anything in the web filespace is publicly visible via a web browser if the URL is known.</em></p>
+<p>You need to look through all the examples yourself to make sure you understand how they work. Please make your own notes in your copy of the code by adding comments in the Javascript and/or HTML markup.</p>
+<h1 id="background-on-running-node.js">Background on running Node.js</h1>
+<p>Node is installed on the Linux systems in the lab.</p>
+<blockquote>
+<p>$ node --version</p>
+<p>v10.16.3</p>
+</blockquote>
+<p>Please make use of the documentation for at <a href="https://nodejs.org/en/docs/">https://nodejs.org/en/docs/</a>. The API documentation is at: <a href="https://nodejs.org/dist/latest-v10.x/docs/api/">https://nodejs.org/dist/latest-v10.x/docs/api/</a>. The API documentation has many examples of how to use the API.</p>
+<p>You can use node interactively:</p>
+<blockquote>
+<p>$ node</p>
+<p>&gt; console.log( "you can use node interactively to try things out" )</p>
+<p>you can use node interactively to try things out</p>
+<p>undefined</p>
+<p>&gt; let a = 5</p>
+<p>undefined</p>
+<p>&gt; console.log( "value of a is " + a )</p>
+<p>value of a is 5</p>
+<p>undefined<br />
+control-d to quit</p>
+</blockquote>
+<p>You can also use node to run regular node.js programs like this:</p>
+<blockquote>
+<p>$ cd node/cs2003/web/web2/node-01</p>
+<p>$ node 01-hello_world.js</p>
+<p>Hello world</p>
+</blockquote>
+<p>Finally you can use node to run a web server like this:</p>
+<blockquote>
+<p>$ node 02-hello_world_html.js</p>
+<p>Server running</p>
+<p><em>As always, there is much to be gained in undertaking these exercises together with one or two other people from the class, discussing what you observe, as well as attempting the tasks and exercises below. Please <strong>run</strong>, <strong>examine</strong>, and <strong>discuss</strong> the code in the lab, and work on exercises and questions with others.</em></p>
+</blockquote>
+<h1 id="node-nginx-and-addresses">Node, Nginx and addresses</h1>
+<p>By default in the School all your web URL requests are sent to nginx (<a href="https://www.nginx.com">https://www.nginx.com</a>) which is an open source high performance web server. If you make a request for some content for example:</p>
+<p><a href="https://ozgur.host.cs.st-andrews.ac.uk/cs2003/web1/cathedral.jpg">https://ozgur.host.cs.st-andrews.ac.uk/cs2003/web1/cathedral.jpg</a></p>
+<p>This will be mapped to the host server for ozgur (actually a machine called Lyrane) and a path ~/nginx_default/cs2003/web1/cathedral.jpg where ~ is a (Unix) shorthand for the home directory of al (/cs/home/ozgur/).</p>
+<p>Separately and in parallel with this infrastructure you can run a node.js server which can serve web content. A node server program like the ones you have seen in lectures listen on a particular port on some host. For example, the following program will bind to the port <strong>port</strong> on localhost (127.0.0.1).</p>
+<blockquote>
+<p>var http = require('http');</p>
+<p>http.createServer(function (req, res) {</p>
+<p>res.writeHead(200, {'Content-Type': 'text/plain'});</p>
+<p>res.end('Hello World\n');</p>
+<p>}).listen(<strong>port</strong>, '127.0.0.1');</p>
+<p>console.log('Server running');</p>
+</blockquote>
+<p>Clearly, if everyone used the same port this would end in disaster. We therefore recommend that in development mode you use your unique Unix ID to identify the port on which your programs run. On Unix machines you can use the command id to find your own uid and use this in a program like the one above. For example, if I type id into a shell the following happens:</p>
+<blockquote>
+<p>$ id</p>
+<p>uid=16831(ozgur) gid=16831(ozgur) groups=16831(ozgur),10001…</p>
+</blockquote>
+<p>showing that my uid is 16831.</p>
+<p>You can do the same within node by running the following Javascript command:</p>
+<blockquote>
+<p>let port = process.getuid()</p>
+</blockquote>
+<p>Thus if I run the above program on a lab machine and launch a browser on the same machine I can read the output of the file by going to the address <a href="http://localhost:16831/">http://localhost:16831/</a>.</p>
+<p>There are many more things you can do (<strong>but most of you will have no need or interest to do so</strong>) and these can be found in the systems wiki at the following address:</p>
+<p><a href="https://systems.wiki.cs.st-andrews.ac.uk/index.php/New_Linux_Web_Service">https://systems.wiki.cs.st-andrews.ac.uk/index.php/New_Linux_Web_Service</a></p>
+<p>in particular section 5.5 describes the node.js configuration. As I said most of you will not need to look at this but may be find it interesting to see how the School’s systems are configured.</p>
+<p>If you would like to install node.js on your own machines the installer may be found here: <a href="https://nodejs.org/en/">https://nodejs.org/en/</a>. <strong>Note that if you do this your assessment is marked on the School systems and anything that does not work on them may be marked as being wrong.</strong></p>
+<h1 id="simple-examples-node">Simple Examples – Node</h1>
+<p>These examples are provided as separate, stand-alone scripts, each of which can be executed from the command line. They are not to be accessed from a Web browser in the manner described above for e.g.:</p>
+<blockquote>
+<p>$ node 01-hello_world.js</p>
+</blockquote>
+<p><strong>Things to try / think about / discuss:</strong></p>
+<ol type="1">
+<li><p>Script <em>02-variables.js</em> does not produce output. Modify it so that all the variables that are defined in the script are displayed.</p></li>
+<li><p>Script <em>06-functions.js</em> has output that might be considered ‘surprising’, for the lines marked “(look at the code!)”. What is surprising? Explain what is happening in the code, and why it is a useful feature, potentially, as well as why you should be cautious in its use. How could the code be changed so that the ‘correct’ answer is given?</p></li>
+<li><p>Script <em>09-csv_files.js</em> has a function called <em>compare_uid()</em>. Describe how this function works with the <em>sort()</em> function. How would you change the function to reverse the sort order? How would you change the code to sort according to the surname?</p></li>
+<li><p>Script <em>10-server_info.js</em> can be accessed remotely via a web browser. Look at what is does. Use two different web browsers to access the page delivered by it and compare results. Use the <em>curl</em> command, e.g.<br />
+$ curl -ivs &lt;userid&gt;.host.cs.st-andrews.ac.uk -o blob.txt<br />
+$ less blob.txt</p></li>
+</ol>
+<blockquote>
+<p>and compare the result with what you see in the web browser(s).</p>
+</blockquote>
+<h1 id="extended-example-cs2003-class-list">Extended Example: CS2003 Class List</h1>
+<p>The examples for this part are in: StudRes/Examples/web/node/web2/node-02.</p>
+<p>The files here build up incrementally a simple application enabled by node. The steps in the development are:</p>
+<ul>
+<li><p><em>csclass-a.js</em>: Read the CSV file and display its contents. The first step is to ensure that you are able to read the data source with your Javascript code.</p></li>
+<li><p><em>csclass-b.js</em>: Now that we know we can see the data in our own code, we can add some basic HTML structure, for example a table.</p></li>
+<li><p><em>csclass-c.js</em>: At this point, some artistic license is employed to demonstrate the use of CSS3, which we introduced previously – however, colours and formatting are not so important. More importantly, custom (semantic) tags (i.e. not defined in HTML5) are used to structure the data in the web-page, and CSS3 is used to control how the page looks.</p></li>
+<li><p><em>csclass-d.js</em>: Now, we introduce a mechanism to check the homepage URL of each student, to see if a web-page exists. An additional column is added to the tabular output (some of this code is complex and we will revisit this later in the course, if you do not follow it all do not worry too much)</p></li>
+</ul>
+<p>Please examine and execute the code and its output, both on the command line, and via a web-browser.</p>
+<p><strong>Things to try / think about / discuss:</strong></p>
+<ol type="1">
+<li><p>What could be the advantage for the use of the semantic tags in <em>csclass-c.js</em>?</p></li>
+<li><p>Examine the file <em>csclass.css</em>. Several of the tag names also have <em>selectors</em> that modify their behaviour. Explain in a single sentence the operation of each CSS3 definition with a selector.</p></li>
+<li><p>Make a new version of the Javascript file, called <em>csclass-e.js</em> (by copying <em>csclass-d.js</em>), as well as a new version of the CSS file, <em>csclass-e.css</em> (by copying <em>csclass.css</em>). Now, modify <em>csclass-e.js</em> and <em>csclass-e.js</em> so that:</p></li>
+</ol>
+<blockquote>
+<p>• the homepage column no longer appears in the HTML.<br />
+• if a homepage URL is valid (i.e. <em>checkURI ()</em> returns <em>true</em> for that URL), the script links the homepage URL to the value in the uid column.<br />
+• the uid appears with a <em>lightgreen</em> background if a URL is linked to it.</p>
+</blockquote>
+<h1 id="client-side-input-from-the-user-with-html5-forms">Client-side input from the user with HTML5 forms</h1>
+<p>The examples for this part are in: StudRes/Examples/web/node/web2/node-03.</p>
+<p>As shown in the lecture, we will be using HTML forms with the HTTP POST command in order to allow input from the user to be sent to the server for processing. In the folder node-03 you will find two versions of a form generating a form:</p>
+<ul>
+<li><p><em>registration-a.js</em>: Which serves a form (read from a file – look at how that works!) but does not process any submission.</p></li>
+<li><p><em>Registration-check.js</em>: Which serves the same form but also processes the POST and returns an confirmation page to the client.</p></li>
+</ul>
+<p><strong>Things to try / think about / discuss:</strong></p>
+<ol type="1">
+<li><p>Why is validation of user input required at both client-side and server-side?</p></li>
+<li><p>Modify <em>registration-check.js</em> so the user is asked if the details are correct (client-side) before being confirmed. If the user says the details are incorrect, then the user is directed back to the original page, only if they are the details are sent to the server.</p></li>
+</ol>
+<p>Hint: Check the HTML5 documentation at https: //developer.mozilla.org/en-US/docs/Web/HTML for the attributes <em>value</em> and <em>type="hidden"</em> for the tag &lt;input&gt;.</p>

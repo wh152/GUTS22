@@ -1,0 +1,151 @@
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org" />
+<title>HTTP and Forwarding</title>
+<meta charset="iso-8859-1" />
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="/aa:CssFile" />
+<meta name="src" content="CS2003-Examples-wk08.tex" />
+</head>
+<body>
+<div class="maketitle">University of St Andrews School of Computer Science<br />
+<br />
+CS2003&nbsp;&#8212;&nbsp;Internet and the Web&nbsp;&#8212;&nbsp;2020/21 &nbsp;<br />
+Exercise&nbsp;8:
+<h2 class="titleHead">HTTP and Forwarding</h2>
+<br />
+Date: 2020-11-05<br /></div>
+<!--l. 27-->
+<p class="noindent">As with all lab exercises, this exercise is not directly assessed. It is intended to complement the material presented in lectures and may turn up in the exam. You are encouraged to complete it in your own time if you do not finish during the scheduled exercise class time. <!--l. 32--></p>
+<p class="noindent">Please split off into your Tutorial Group Teams channels and start a meeting at the beginning of the class. While you are not explicitly asked to collaborate this week, you can use the meeting for discussion during the class. I will rotate around the class and pop in on meetings. <!--l. 38--></p>
+<p class="noindent">The aim of this exercise class is to go into further depth in the material covered in week 08, and the week 09 tutorial.</p>
+<h3 class="sectionHead"><span class="titlemark">1</span> <a id="x1-10001"></a>HTTP operation</h3>
+<!--l. 43-->
+<p class="noindent">Copy the shell script: <!--l. 45--></p>
+<p class="noindent"><a href="https://studres.cs.st-andrews.ac.uk/CS2003/Examples/CS2003-Examples-wk08/curl_time.sh" class="url">https://studres.cs.st-andrews.ac.uk/CS2003/Examples/CS2003-Examples-wk08/curl_time.sh</a> <!--l. 47--></p>
+<p class="noindent">to your own filespace, e.g. to copy it into your home directory (although I suggest keeping your filespace a bit tidier!), then:</p>
+<div class="verbatim" id="verbatim-1"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;cp</span><span class="pcrr7t-x-x-140">&nbsp;/cs/studres/CS2003/Examples/CS20033-Examples-wk08/curl_time.sh</span><span class="pcrr7t-x-x-140">&nbsp;~</span></div>
+<!--l. 52-->
+<p class="nopar"><!--l. 54--></p>
+<p class="noindent">Run the file (note that it may take a while to complete):</p>
+<div class="verbatim" id="verbatim-2"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;./curl_time.sh</span></div>
+<!--l. 59-->
+<p class="nopar"><!--l. 61--></p>
+<p class="noindent"></p>
+<ol class="enumerate1">
+<li class="enumerate" id="x1-1002x1">Note the two values of real time that are reported. Examine the contents of the shell script. Explain the difference in the two times reported.</li>
+<li class="enumerate" id="x1-1004x2">Adapt the shell script so that it can use an even newer protocol version.</li>
+</ol>
+<!--l. 72-->
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">2</span> <a id="x1-20002"></a>IP forwarding</h3>
+<!--l. 74-->
+<p class="noindent">For this question you will find the lecture slides useful: <!--l. 76--></p>
+<p class="noindent"><a href="https://studres.cs.st-andrews.ac.uk/CS2003/Lectures/cs2003_net-10_addressing.pdf" class="url">https://studres.cs.st-andrews.ac.uk/CS2003/Lectures/cs2003_net-10_addressing.pdf</a><br />
+<br />
+You might also find the IPNetMask program useful: <!--l. 80--></p>
+<p class="noindent"><a href="https://studres.cs.st-andrews.ac.uk/CS2003/Examples/CS2003-Examples-wk08/IPNetMask.java" class="url">https://studres.cs.st-andrews.ac.uk/CS2003/Examples/CS2003-Examples-wk08/IPNetMask.java</a><br />
+<br />
+or again, on the School machines this can be found at</p>
+<div class="verbatim" id="verbatim-3"><span class="pcrr7t-x-x-140">/cs/studres/CS2003/Examples/CS2003-Examples-wk08/IPNetMask.java</span></div>
+<!--l. 86-->
+<p class="nopar"><!--l. 88--></p>
+<p class="noindent"></p>
+<ol class="enumerate1">
+<li class="enumerate" id="x1-2002x1">For the forwarding table entries A--D below: <!--l. 101-->
+<p class="noindent"><!--tex4ht:inline--></p>
+<div class="tabular">
+<table id="TBL-2" class="tabular">
+<colgroup id="TBL-2-1g">
+<col id="TBL-2-1" />
+<col id="TBL-2-2" />
+<col id="TBL-2-3" /></colgroup>
+<tr style="vertical-align:baseline;" id="TBL-2-1-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-1-1" class="td11"></td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-1-2" class="td11">destination</td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-1-3" class="td11">mask</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-2-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-2-1" class="td11">A</td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-2-2" class="td11">121.16.0.0</td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-2-3" class="td11">16</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-3-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-3-1" class="td11">B</td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-3-2" class="td11">121.16.20.0</td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-3-3" class="td11">24</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-4-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-4-1" class="td11">C</td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-4-2" class="td11">121.16.16.0</td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-4-3" class="td11">20</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-5-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-5-1" class="td11">D</td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-5-2" class="td11">0.0.0.0</td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-5-3" class="td11">0</td>
+</tr>
+</table>
+</div>
+<!--l. 103-->
+<p class="noindent">find which would be used for each of the following destination addresses:</p>
+<div class="verbatim" id="verbatim-4"><span class="pcrr7t-x-x-140">121.16.20.2</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">121.17.20.4</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">121.16.6.6</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">121.16.17.8</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">121.16.21.10</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">120.16.20.12</span></div>
+<!--l. 112-->
+<p class="nopar"></p>
+</li>
+<li class="enumerate" id="x1-2004x2">Log into your host server. Use the ip command to list all of the network interfaces:
+<div class="verbatim" id="verbatim-5"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;ip</span><span class="pcrr7t-x-x-140">&nbsp;link</span><span class="pcrr7t-x-x-140">&nbsp;show</span></div>
+<!--l. 119-->
+<p class="nopar"><!--l. 121--></p>
+<p class="noindent">You should see a loopback interface lo as well as some other virtual interfaces that can be ignored. Aside: if you just want to list the physical devices, ip does not have a mechanism to do this, but you could interrogate the /sys/ filesystem directly, e.g.,</p>
+<div class="verbatim" id="verbatim-6"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;find</span><span class="pcrr7t-x-x-140">&nbsp;/sys/class/net</span><span class="pcrr7t-x-x-140">&nbsp;-type</span><span class="pcrr7t-x-x-140">&nbsp;l</span><span class="pcrr7t-x-x-140">&nbsp;-not</span><span class="pcrr7t-x-x-140">&nbsp;-lname</span><span class="pcrr7t-x-x-140">&nbsp;'&#8902;virtual&#8902;'</span><span class="pcrr7t-x-x-140">&nbsp;-printf</span><span class=
+"pcrr7t-x-x-140">&nbsp;'%f\n'</span></div>
+<!--l. 129-->
+<p class="nopar"><!--l. 131--></p>
+<p class="noindent">Of the remaining devices we are only interested in the devices that are up. We can find these by looking in the output of ip for those with state UP:</p>
+<div class="verbatim" id="verbatim-7"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;ip</span><span class="pcrr7t-x-x-140">&nbsp;link</span><span class="pcrr7t-x-x-140">&nbsp;show</span><span class="pcrr7t-x-x-140">&nbsp;|</span><span class="pcrr7t-x-x-140">&nbsp;grep</span><span class="pcrr7t-x-x-140">&nbsp;"state</span><span class="pcrr7t-x-x-140">&nbsp;UP"</span></div>
+<!--l. 137-->
+<p class="nopar"><!--l. 139--></p>
+<p class="noindent">This gives me the Ethernet interface named eno1 on klovia, but you might find something different. <!--l. 142--></p>
+<p class="noindent">Next, look at the IPv4 routing table. There are two (or more) possible ways to do this:</p>
+<div class="verbatim" id="verbatim-8"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;ip</span><span class="pcrr7t-x-x-140">&nbsp;route</span><span class="pcrr7t-x-x-140">&nbsp;show</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;netstat</span><span class="pcrr7t-x-x-140">&nbsp;-4rn</span></div>
+<!--l. 148-->
+<p class="nopar"><!--l. 150--></p>
+<p class="noindent">You should see that the Ethernet interface is the default route for the local subnet as well as everything else. <!--l. 153--></p>
+<p class="noindent">Another aside: if you have not come across it yet, grep is a command-line program for searching text. The &#8220;re&#8221; in the name stands for &#8220;regular expression&#8221;, and as you might expect you can search using regular expressions as we covered in week 5. So if you wanted to search for IPv4 addresses in the output of ip, you could do something like:</p>
+<div class="verbatim" id="verbatim-9"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;ip</span><span class="pcrr7t-x-x-140">&nbsp;route</span><span class="pcrr7t-x-x-140">&nbsp;show</span><span class="pcrr7t-x-x-140">&nbsp;|</span><span class="pcrr7t-x-x-140">&nbsp;grep</span><span class="pcrr7t-x-x-140">&nbsp;-E</span><span class="pcrr7t-x-x-140">&nbsp;-o</span><span class="pcrr7t-x-x-140">&nbsp;"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}.[0-9]{1,3}"</span></div>
+<!--l. 162-->
+<p class="nopar"></p>
+</li>
+</ol>
+<!--l. 166-->
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">3</span> <a id="x1-30003"></a>IP addressing for a site</h3>
+<!--l. 168-->
+<p class="noindent">You might again find the IPNetMask program useful: <!--l. 170--></p>
+<p class="noindent"><a href="https://studres.cs.st-andrews.ac.uk/CS2003/Examples/CS2003-Examples-wk08/IPNetMask.java" class="url">https://studres.cs.st-andrews.ac.uk/CS2003/Examples/CS2003-Examples-wk08/IPNetMask.java</a><br />
+<br />
+You have a new office site to set up for a company with three departments, each which needs to run its own network, but the four departments should have connectivity between them.</p>
+<ul class="itemize1">
+<li class="itemize">All departments need connectivity to the Internet.</li>
+<li class="itemize">Each department could have up to 200 systems running (clients and internal servers).</li>
+<li class="itemize">A set of 24 servers must be accessible directly to customers via the Internet, as well as internally to the clients in each department.</li>
+</ul>
+<!--l. 181-->
+<p class="noindent">Explain, with a diagram, how you would configure structure and addressing for this network if: <!--l. 183--></p>
+<p class="noindent"></p>
+<ol class="enumerate1">
+<li class="enumerate" id="x1-3002x1">you were allocated the prefix 134.24.144.0/22 for the new office site.</li>
+<li class="enumerate" id="x1-3004x2">you were allocated the prefix 134.24.144.0/27 for the new office site.</li>
+</ol>
+<!--l. 188-->
+<p class="noindent">Tristan Henderson, with thanks to Saleem Bhatti</p>
+</body>
+</html>

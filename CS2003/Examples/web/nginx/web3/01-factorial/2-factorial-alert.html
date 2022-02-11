@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- Saleem BHatti, Sep 2018 -->
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Javascript Factorials</title>
+</head>
+
+<body onload="genAlert('About to print factorial table');">
+
+<h2>Table of Factorials</h2>
+
+<script>
+function genAlert(x) { alert(x); }
+
+function printFactorials() {
+  for (let i = 1, f = 1; i <= 12; i++, f *= i) {
+    document.write("<p>");
+    document.write(i + "!  =  " + f);
+    document.write("</p>");
+  }
+}
+</script>
+
+<script>
+printFactorials();
+</script>
+
+</body>
+
+</html>

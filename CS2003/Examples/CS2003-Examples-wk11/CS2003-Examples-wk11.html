@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.2.0" />
+<title>Measurement</title>
+<meta charset="iso-8859-1" />
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="\aa:CssFile" />
+<meta name="src" content="CS2003-Examples-wk11.tex" />
+</head>
+<body>
+<div class="maketitle">University of St Andrews School of Computer Science<br />
+<br />
+CS2003&nbsp;&#8212;&nbsp;Internet and the Web&nbsp;&#8212;&nbsp;2020/21 &nbsp;<br />
+Exercise&nbsp;11:
+<h2 class="titleHead">Measurement</h2>
+<br />
+Date: 2020-11-26<br /></div>
+<!--l. 31-->
+<p class="noindent">As with all lab exercises, this exercise is not directly assessed. It is intended to complement the material presented in lectures and may turn up in the exam. <!--l. 35--></p>
+<p class="noindent">This week we have a shorter exercise class with just two tools to try out. This is because I have set a number of readings for the tutorial this week and I would like you to spend some time on those. So if you find that this week&#8217;s exercises do not take as long, then please get started on the reading. <!--l. 41--></p>
+<p class="noindent">Please split off into your Tutorial Group Teams channels and start a meeting at the beginning of the class. While you are not explicitly asked to collaborate this week, you can use the meeting for discussion during the class. I will rotate around the class and pop in on meetings. <!--l. 47--></p>
+<p class="noindent">You will need to do this week&#8217;s class on a lab machine &#8212; the tools will not work correctly on a host server.</p>
+<h3 class="sectionHead"><span class="titlemark">1</span> <a id="x1-10001"></a>Delay and throughput estimation of end-to-end paths</h3>
+<!--l. 52-->
+<p class="noindent"></p>
+<ol class="enumerate1">
+<li class="enumerate" id="x1-1002x1">Use ping to work out the network delay from a Linux workstation in the Lab to www.caida.org. <!--l. 56-->
+<p class="noindent">For instance, from a CS lab machine, I can use:</p>
+<div class="verbatim" id="verbatim-1"><span class="pcrr7t-x-x-140">$</span><span class="pcrr7t-x-x-140">&nbsp;ping</span><span class="pcrr7t-x-x-140">&nbsp;-A</span><span class="pcrr7t-x-x-140">&nbsp;-n</span><span class="pcrr7t-x-x-140">&nbsp;-c</span><span class="pcrr7t-x-x-140">&nbsp;30</span><span class="pcrr7t-x-x-140">&nbsp;www.caida.org</span></div>
+<!--l. 60-->
+<p class="nopar"><!--l. 62--></p>
+<p class="noindent">This makes 30 measurements, with the final line of output of the format:</p>
+<div class="verbatim" id="verbatim-2"><span class="pcrr7t-x-x-140">rtt</span><span class="pcrr7t-x-x-140">&nbsp;min/avg/max/mdev</span><span class="pcrr7t-x-x-140">&nbsp;=</span><span class="pcrr7t-x-x-140">&nbsp;WWWW/XXXX/YYYY/ZZZZ</span><span class="pcrr7t-x-x-140">&nbsp;ms</span></div>
+<!--l. 67-->
+<p class="nopar"><!--l. 69--></p>
+<p class="noindent">The times reported are round-trip-times (RTTs), so the one-way delay is half of that. Note these times, as well as the number of bytes transmitted for each measurement. Use the avg time (this is the arithmetic mean) to make your calculations. <!--l. 75--></p>
+<p class="noindent">We looked at CAIDA in a previous class - you can find out more about CAIDA at <a href="https://www.caida.org/home/about/faq.xml" class="url">https://www.caida.org/home/about/faq.xml</a></p>
+</li>
+<li class="enumerate" id="x1-1004x2">Now run:
+<div class="verbatim" id="verbatim-3"><span class="pcrr7t-x-x-140">ping</span><span class="pcrr7t-x-x-140">&nbsp;-A</span><span class="pcrr7t-x-x-140">&nbsp;-n</span><span class="pcrr7t-x-x-140">&nbsp;-c</span><span class="pcrr7t-x-x-140">&nbsp;30</span><span class="pcrr7t-x-x-140">&nbsp;-s</span><span class="pcrr7t-x-x-140">&nbsp;1256</span><span class="pcrr7t-x-x-140">&nbsp;www.caida.org</span></div>
+<!--l. 82-->
+<p class="nopar"><!--l. 84--></p>
+<p class="noindent">Note these times, as well as the number of bytes transmitted for each measurement.</p>
+</li>
+<li class="enumerate" id="x1-1006x3">By examining the data you have collected above, estimate the throughput (data rate) for the end-to-end path between your workstation and www.caida.org. To do this, we note that the only difference between your two measurements is the size of the packet that is sent. We also remember that the transmission delay is related to the number of bits to be transmitted (T <sub>x</sub> = b&#8725;r). <!--l. 94-->
+<p class="noindent">If we call the first measurement t&#8242; and the second t&#8242;&#8242;, then the difference between the two round trip times (t<sub>rtt</sub>)) is due to the additional packet size, d = 1200 bytes (look at man ping for the -s argument to see why this is true). So then we have:</p>
+<center class="par-math-display"><img src="CS2003-Examples-wk110x.png" alt=" &#8242;&#8242; &#8242; trtt = t - t " class="par-math-display" /></center>
+<!--l. 100-->
+<p class="nopar"></p>
+<center class="math-display"><img src="CS2003-Examples-wk111x.png" alt="td = trtt&#8725;2 " class="math-display" /></center>
+<!--l. 101-->
+<p class="nopar"></p>
+<center class="math-display"><img src="CS2003-Examples-wk112x.png" alt="r = d &#8725;td " class="math-display" /></center>
+<!--l. 102-->
+<p class="nopar"><!--l. 104--></p>
+<p class="noindent">Remember your units (t will be in milliseconds, d in bytes). <!--l. 106--></p>
+<p class="noindent">Using the above, I estimate the throughput from a lab machine to www.caida.org to be approximately 94.44Mbps. Your results may differ. What assumptions does this calculation make?</p>
+</li>
+</ol>
+<!--l. 112-->
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">2</span> <a id="x1-20002"></a>Routing measurement</h3>
+<!--l. 114-->
+<p class="noindent"></p>
+<ol class="enumerate1">
+<li class="enumerate" id="x1-2002x1">Run:
+<div class="verbatim" id="verbatim-4"><span class="pcrr7t-x-x-140">ping</span><span class="pcrr7t-x-x-140">&nbsp;-c</span><span class="pcrr7t-x-x-140">&nbsp;5</span><span class="pcrr7t-x-x-140">&nbsp;www.caida.org</span></div>
+<!--l. 119-->
+<p class="nopar"><!--l. 121--></p>
+<p class="noindent">The output from ping shows &#8216;ttl=49&#8217;. What is the TTL? (Look this up &#8211; it is a field in the IPv4 packet header)</p>
+</li>
+<li class="enumerate" id="x1-2004x2">Now run:
+<div class="verbatim" id="verbatim-5"><span class="pcrr7t-x-x-140">ping</span><span class="pcrr7t-x-x-140">&nbsp;-c</span><span class="pcrr7t-x-x-140">&nbsp;5</span><span class="pcrr7t-x-x-140">&nbsp;-t</span><span class="pcrr7t-x-x-140">&nbsp;9</span><span class="pcrr7t-x-x-140">&nbsp;www.caida.org</span></div>
+<!--l. 128-->
+<p class="nopar"><!--l. 130--></p>
+<p class="noindent">What is reported in the ping output? <!--l. 132--></p>
+<p class="noindent">Look at <a href="https://www.geant.org/About" class="url">https://www.geant.org/About</a> to find out what GEANT is.</p>
+</li>
+<li class="enumerate" id="x1-2006x3">Run traceroute to www.caida.org:
+<div class="verbatim" id="verbatim-6"><span class="pcrr7t-x-x-140">traceroute</span><span class="pcrr7t-x-x-140">&nbsp;www.caida.org</span></div>
+<!--l. 138-->
+<p class="nopar"><!--l. 140--></p>
+<p class="noindent">Examine the network path that is displayed. What more can you say about the last ping measurement that you ran?</p>
+</li>
+<li class="enumerate" id="x1-2008x4">Examine again the output of the traceroute to www.caida.org. What do you think is happening between hop 9 and hop 10? <!--l. 146-->
+<p class="noindent">Note: This should be a large delay &#8211; as shown below. There is a possibility that the route has changed since I ran traceroute; the hop count might have changed, or the delay might occur at a different point in the path. I see:</p>
+<div class="verbatim" id="verbatim-7"><span class="pcrr7t-x-x-93">&nbsp;9</span><span class="pcrr7t-x-x-93">&nbsp;</span><span class="pcrr7t-x-x-93">&nbsp;janet.mx1.lon.uk.geant.net</span><span class="pcrr7t-x-x-93">&nbsp;(62.40.124.197)</span><span class="pcrr7t-x-x-93">&nbsp;</span><span class="pcrr7t-x-x-93">&nbsp;12.208</span><span class="pcrr7t-x-x-93">&nbsp;ms</span><span class="pcrr7t-x-x-93">&nbsp;</span><span class="pcrr7t-x-x-93">&nbsp;11.334</span><span class=
+"pcrr7t-x-x-93">&nbsp;ms</span><span class="pcrr7t-x-x-93">&nbsp;</span><span class="pcrr7t-x-x-93">&nbsp;11.290</span><span class="pcrr7t-x-x-93">&nbsp;ms</span> <span class="pcrr7t-x-x-93">&nbsp;</span><br />
+<span class="pcrr7t-x-x-93">10</span><span class="pcrr7t-x-x-93">&nbsp;</span><span class="pcrr7t-x-x-93">&nbsp;internet2-gw.mx1.lon.uk.geant.net</span><span class="pcrr7t-x-x-93">&nbsp;(62.40.124.45)</span><span class="pcrr7t-x-x-93">&nbsp;</span><span class="pcrr7t-x-x-93">&nbsp;86.071</span><span class="pcrr7t-x-x-93">&nbsp;ms</span><span class="pcrr7t-x-x-93">&nbsp;</span><span class="pcrr7t-x-x-93">&nbsp;85.918</span><span class="pcrr7t-x-x-93">&nbsp;ms</span><span class=
+"pcrr7t-x-x-93">&nbsp;</span><span class="pcrr7t-x-x-93">&nbsp;85.913</span><span class="pcrr7t-x-x-93">&nbsp;ms</span></div>
+<!--l. 155-->
+<p class="nopar"><!--l. 157--></p>
+<p class="noindent">Hint: look up <a href="https://map.geant.org" class="url">https://map.geant.org</a></p>
+</li>
+</ol>
+<!--l. 161-->
+<p class="noindent">Tristan Henderson, with thanks to Saleem Bhatti</p>
+</body>
+</html>

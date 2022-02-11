@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- Saleem Bhatti, Sep 2018 -->
+
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>Text size (closures)</title>
+</head>
+
+<body>
+
+<h1>Text size (closures)</h1>
+
+<p id="fontsize">--</p>
+
+<button id="increase">increase body font size</button> <br />
+<button id="decrease">decrease body font size</button> <br />
+<button id="reset">reset body font size</button>
+
+<hr />
+
+<p>
+  Grumpy wizards make toxic brew for the evil Queen and Jack.
+</p>
+
+<p>
+  The quick brown fox jumps over the lazy dog.
+</p>
+
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+  aliquip ex ea commodo consequat. Duis aute irure dolor in
+  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+  culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<script src="textsize.js"></script>
+<script>
+let cts = changeTextSize();
+
+// Set up callback functions for buttons.
+document.getElementById("increase").onclick = cts["increase"];
+document.getElementById("decrease").onclick = cts["decrease"];
+document.getElementById("reset").onclick = cts["reset"];
+
+cts["reset"](); // Start at default size.
+</script>
+
+</body>
+
+</html>

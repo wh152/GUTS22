@@ -1,0 +1,99 @@
+<h1 id="description">1. Description </h1>
+<p>Your task is to build a simple online shop front that will allow purchases to be submitted, and a ‘receipt’ issued to the user. The user will select items to buy from a short, pre-defined list from a web browser. The relevant information about the items being purchased will be sent to the server, which will confirm the purchase by generating a ‘receipt’ as a web page that is displayed to the user.</p>
+<p>Technologies you will need to use:</p>
+<ul>
+<li><p>HTML5 for web pages.</p></li>
+<li><p>CSS3 for presentation of web pages.</p></li>
+<li><p>Javascript for client and server-side side processing.</p></li>
+</ul>
+<h1 id="requirements">2. Requirements </h1>
+<p>Using the files given (see Section 5, below) you are required to change and extend the code as necessary to perform the following tasks:</p>
+<ol type="1">
+<li><p>Calculate the line-cost (quantity × item_price), and sub-total cost for the order and display it in on the web page, dynamically, as item quantities are changed.</p></li>
+<li><p>Calculate a delivery charge, as 10% of the total order, unless the order total (before VAT is added) is £100.00 or more, in which case the delivery charge is zero. This value should be updated dynamically and displayed on the web page as item quantities are changed.</p></li>
+<li><p>Calculate the VAT (at the rate of 20%), as the sum of (i) the sub-total cost of the items, and (ii) the delivery charge, and display it in the VAT box. This value should be updated dynamically and displayed on the web page as item quantities are changed.</p></li>
+<li><p>Calculate the total cost of the order, as the sum of the sub-total, the delivery charge, and the VAT. This value should be updated dynamically and displayed on the web page as item quantities are changed.</p></li>
+<li><p>At the server-side, if the order is considered correct and valid (see the checks listed below), it should be confirmed with a ‘receipt page’, otherwise the order should be rejected, and the user prompted to try again. The ‘receipt page’ produced should include all the relevant order details from the client, as well as some additional details for the transaction (the first item listed below):</p></li>
+</ol>
+<ul>
+<li><p>The date of the order, and a unique ‘transaction ID’ for the order.</p></li>
+<li><p>A list of all the items ordered, including quantities and unit costs, as well as line costs. (Items for which a zero quantity was requested should not appear in the order, of course.)</p></li>
+<li><p>The sub-total, delivery charge, VAT, and total cost of the order.</p></li>
+<li><p>The customer name and delivery address for the order.</p></li>
+<li><p>The credit card type, and only the first two digits and last two digits of the credit card number.</p></li>
+</ul>
+<blockquote>
+<p>(Hint: except for the first item, the ‘receipt page’, will contain similar information to the main page.)</p>
+</blockquote>
+<p>The checks that need to be performed before the order can be confirmed are:</p>
+<ul>
+<li><p>Mastercard card numbers should have 16 digits and the first digit should be 5.</p></li>
+<li><p>Visa card numbers should have 16 digits and the first digit should be 4.</p></li>
+<li><p>The credit card security code must have 3 digits and be a positive value.</p></li>
+<li><p>Order quantities should be positive, whole numbers.</p></li>
+<li><p>Email addresses should be valid: they should contain an ‘at sign’ (‘@’), at least one dot/full- stop (‘.’), no spaces, and the relative positions of ampersand and dots should be correct.</p></li>
+<li><p>All personal details and payment details must be completed before the order can be submitted.</p></li>
+</ul>
+<ol start="6" type="1">
+<li><p>Ask the user to confirm that the information is correct before the order is submitted to the server. Various checks should be performed at the client-side. This could be a simple verification through a basic dialogue ‘pop-up’, allowing the user to agree to submit the form or cancel, which would be a basic minimum. Much better is for the user to be presented with all the order information listed as a web page, and then either confirm submission, or be given the option to go back to the ordering page and modify the order.</p></li>
+<li><p>Improve the presentation of the main web-page. This should not just be a case of changing colours and fonts, but something more useful to improve usability, such as improving the layout, making it easier to see which information still needs to be entered before submission, etc.</p></li>
+<li><p>In your report, discuss the security and privacy issues with your application, especially with respect to the kind of information the order contains.</p></li>
+</ol>
+<p><em>When testing your code, please do not use actual credit card information from any real credit cards, such as your own credit card, or anyone else’s credit card.</em></p>
+<p>An incremental approach is recommended, make sure that each part works before going on to the next part. (Hint: Make a safe copy of whatever you have got working so far, so that you always have a working solution to submit, while you are developing the next part of your solution.)</p>
+<h1 id="submission">3. Submission </h1>
+<p>Your MMS submission should be a single .zip, or .tar.gz file containing:</p>
+<ol type="a">
+<li><p><strong>Any HTML, CSS, and Javascript files</strong>. A single directory, called shop (which may have subdirec- tories for resources such as images), with all the source code needed to run your application. Your submission should have server-side and client-side code. It should be possible to take your submitted directory, copy it to School filespace, and for it to run on a school server using the node command ( e.g. node shop.js)</p></li>
+</ol>
+<p>Please note the following important items:</p>
+<p><strong>You must not use any external / third-party libraries or source code.</strong></p>
+<blockquote>
+<p><strong>Please do not use absolute path-names for files or URLs in your submission. You should not need to access any external resources from your code. So, all your HTML, CSS3 and Javascript files (as well as any other files, such as images, or files created by your code) must all be in the single directory that you submit.</strong></p>
+<p><strong>If the marker cannot run the code you have submitted on the Linux host servers and access it from either Firefox or Chrome web-browsers, then you will be penalised in marking.</strong></p>
+<p><strong>Do not change any of the names of the forms, HTML fields, attributes or variables to ease marking load. If you do not comply, then you will be penalised in marking</strong></p>
+</blockquote>
+<ol start="2" type="a">
+<li><p><strong>Report</strong>. A single PDF file which is a report with the information listed below. In your report, where appropriate, try to concentrate on why you did something (design decisions) rather than just explaining what the code does. In your report, please include:</p></li>
+</ol>
+<ul>
+<li><p>A simple guide to running your application, including which web-browser you used for testing – Firefox or Chrome.</p></li>
+<li><p>A summary of the operation of your application indicating the level of completeness with respect to the Requirements listed above.</p></li>
+<li><p>Suitable, simple, diagrams, as required, showing the operation of your program</p></li>
+<li><p>An indication of how you tested your application, including screenshots of the web pages showing your application working.</p></li>
+</ul>
+<h1 id="a-note-on-collaboration">4. A note on collaboration </h1>
+<p>I encourage you to discuss the assignment with other members of the class. This may be especially useful in examining the code that has been given out as your starting point, but also for discussing the <em>Requirements</em>. However, the code you develop for your solution should be your own, individual work, and your report should be written by you alone.</p>
+<h1 id="getting-started">5 Getting started </h1>
+<p>On studres, you will find a directory called shop in studres/CS2003/Practicals/Web1/. This contains code that you should modify and extend directly for your solution. The files you will find are:</p>
+<ul>
+<li><p><em>shop.js</em>: a Javascript file which generates the main web page without any functionality.</p></li>
+<li><p><em>shopfront.css</em>: a CSS file with some basic formatting for the main web page.</p></li>
+<li><p><em>shopfront.js</em>: a Javascript file that is used for client-side processing in the main web page.</p></li>
+<li><p><em>piks</em>: a directory containing various images used by the main web page.</p></li>
+<li><p><em>stock.txt</em>: a text file which contains a list of the initial items for sale, formatted as CSV records (one item per line), each line being:</p></li>
+</ul>
+<blockquote>
+<p>item_id, item_name, item_info, item_price</p>
+<p><strong>–</strong> item_id: a unique identifier for the item.<br />
+<strong>–</strong> item_name: a name for the item, to be displayed on the web page.<br />
+<strong>–</strong> item_info: information / description for the item, to be displayed on the web page.<br />
+<strong>–</strong> item_price: cost of an item, in UK pounds (£), excluding Value Added Tax (VAT – 20%).</p>
+</blockquote>
+<p>You should copy the shop directory from studres into your own web filespace. This will then be accessible through your School virtual web host. You will also need to move the shop.js to your node.js directory so that you can execute it as your server. Once you have copied the files, access them through a web-browser (Firefox or Chrome), to understand the current functionality. Please perform all your testing with either Firefox or Chrome web-browsers.</p>
+<p>You should be able to complete the <em>Requirements</em> by modifying and/or extending these files. The file <em>shop.js</em> should perform the required checks on the order, and then generate a ‘receipt’ page for confirming the order for the user.</p>
+<h1 id="marking">Marking </h1>
+<p>The submission will be marked on the University’s common reporting scale according to the mark descriptors in the Student Handbook at:</p>
+<blockquote>
+<p><a href="https://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/feedback.html#Mark_Descriptors">https://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/feedback.html#Mark_Descriptors</a></p>
+</blockquote>
+<h1 id="lateness">Lateness </h1>
+<p>The standard penalty for late submission applies (Scheme B: 1 mark per 8 hour period, or part thereof):</p>
+<blockquote>
+<p><a href="https://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/assessment.html#lateness-penalties">https://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/assessment.html#lateness-penalties</a></p>
+</blockquote>
+<p><strong>Good Academic Practice</strong></p>
+<p>Please ensure you are following the relevant guidelines on Good Academic Practice as outlined at:</p>
+<blockquote>
+<p>https://www.st-andrews.ac.uk/students/rules/academicpractice/</p>
+</blockquote>

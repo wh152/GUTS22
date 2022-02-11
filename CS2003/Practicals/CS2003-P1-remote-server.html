@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.2.0" />
+<title>Remote server</title>
+<meta charset="iso-8859-1" />
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="\aa:CssFile" />
+<meta name="src" content="CS2003-P1-remote-server.tex" />
+</head>
+<body>
+<div class="maketitle">University of St Andrews School of Computer Science<br />
+<br />
+CS2003&nbsp;&#8212;&nbsp;Internet and the Web&nbsp;&#8212;&nbsp;2020/21 &nbsp;<br />
+Assignment: Remote server<br />
+Deadline: 2020-09-23&nbsp;Credits: 10% of coursework mark<br />
+MMS is the definitive source for deadline and credit details<br />
+<br />
+You are expected to have read and understood all the information in this specification and any accompanying documents at least a week before the deadline. You must contact the lecturer regarding any queries well in advance of the deadline.</div>
+<h3 class="likesectionHead"><a id="x1-1000"></a>Aim / Learning objectives</h3>
+<!--l. 28-->
+<p class="noindent">The aim of this assignment is twofold. First, it is to ensure that you are competent at remote working as this is essential given the current situation, and the skills used in this practical will be required for future practicals in the module. Second, it is to gain experience around client/server programming. <!--l. 41--></p>
+<p class="noindent"></p>
+<h3 class="likesectionHead"><a id="x1-2000"></a>Requirements</h3>
+<!--l. 43-->
+<p class="noindent">You are to build a pair of client and server programs in Java that must:</p>
+<ul class="itemize1">
+<li class="itemize">meet the specification outlined below (both protocol and arguments)</li>
+<li class="itemize">be tested thoroughly on at least two host servers</li>
+</ul>
+<!--l. 50-->
+<p class="noindent"></p>
+<h3 class="likesectionHead"><a id="x1-3000"></a>Specification</h3>
+<!--l. 52-->
+<p class="noindent"></p>
+<h4 class="likesubsectionHead"><a id="x1-4000"></a>Command-line arguments</h4>
+<!--l. 54-->
+<p class="noindent">Your programs must be named SimpleClient and SimpleServer. SimpleClient must take two arguments and be able to be run as follows:</p>
+<div class="verbatim" id="verbatim-1"><span class="pcrr7t-x-x-140">java</span><span class="pcrr7t-x-x-140">&nbsp;SimpleClient</span><span class="pcrr7t-x-x-140">&nbsp;&lt;IPaddress&gt;</span><span class="pcrr7t-x-x-140">&nbsp;&lt;port&gt;</span></div>
+<!--l. 60-->
+<p class="nopar"><!--l. 62--></p>
+<p class="noindent">where &lt;IPaddress&gt; is the IP address of a server, and &lt;port&gt; is the port number to connect to. <!--l. 66--></p>
+<p class="noindent">SimpleServer must take one argument and be able to be run as follows:</p>
+<div class="verbatim" id="verbatim-2"><span class="pcrr7t-x-x-140">java</span><span class="pcrr7t-x-x-140">&nbsp;SimpleServer</span><span class="pcrr7t-x-x-140">&nbsp;&lt;port&gt;</span></div>
+<!--l. 71-->
+<p class="nopar"><!--l. 73--></p>
+<p class="noindent">where &lt;port&gt; is the port number to connect to. <!--l. 75--></p>
+<p class="noindent">Your programs must be tested and should raise appropriate errors if incorrect numbers of arguments are passed. <!--l. 87--></p>
+<p class="noindent"></p>
+<h4 class="likesubsectionHead"><a id="x1-5000"></a>Protocol</h4>
+<!--l. 89-->
+<p class="noindent">The protocol for your client and server is text-based. A signal-sequence diagram for a successful session is shown below in Figure&nbsp;<a href="#x1-50011">1<!--tex4ht:ref: f:prot --></a>. <!--l. 93--></p>
+<p class="noindent"></p>
+<hr class="figure" />
+<div class="figure"><a id="x1-50011"></a> <!--l. 95-->
+<p class="noindent"><img src="client_server-.png" alt="PIC" /><br /></p>
+<div class="caption"><span class="id">Figure&nbsp;1:</span> <span class="content">A successful run of the protocol.</span></div>
+<!--tex4ht:label?: x1-50011 -->
+<!--l. 98-->
+<p class="noindent"></p>
+</div>
+<hr class="endfigure" />
+<!--l. 100-->
+<p class="noindent">Client and server both use TCP and send ASCII strings. The client initiates communication to the server. When the server receives one of the following strings, it will respond as shown in Table&nbsp;<a href="#x1-50021">1<!--tex4ht:ref: t:prot --></a>.</p>
+<div class="table"><!--l. 104-->
+<p class="noindent"><a id="x1-50021"></a></p>
+<hr class="float" />
+<div class="float">
+<div class="tabular">
+<table id="TBL-1" class="tabular">
+<colgroup id="TBL-1-1g">
+<col id="TBL-1-1" /></colgroup>
+<colgroup id="TBL-1-2g">
+<col id="TBL-1-2" /></colgroup>
+<tr style="vertical-align:baseline;" id="TBL-1-1-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-1-1-1" class="td11">Received</td>
+<td style="white-space:wrap; text-align:left;" id="TBL-1-1-2" class="td11"><!--l. 107-->
+<p class="noindent">Response</p>
+</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-1-2-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-1-2-1" class="td11">HELLO</td>
+<td style="white-space:wrap; text-align:left;" id="TBL-1-2-2" class="td11"><!--l. 108-->
+<p class="noindent">Respond with HELLO until receiving ADDRESS: IPaddress</p>
+</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-1-3-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-1-3-1" class="td11">ADDRESS: IPaddress</td>
+<td style="white-space:wrap; text-align:left;" id="TBL-1-3-2" class="td11"><!--l. 109-->
+<p class="noindent">Respond with ADDRESS: IPaddress until receiving BYE</p>
+</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-1-4-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-1-4-1" class="td11">BYE</td>
+<td style="white-space:wrap; text-align:left;" id="TBL-1-4-2" class="td11"><!--l. 110-->
+<p class="noindent">Respond with BYE and close connection</p>
+</td>
+</tr>
+</table>
+</div>
+<br />
+<div class="caption"><span class="id">Table&nbsp;1:</span> <span class="content">Server responses</span></div>
+<!--tex4ht:label?: x1-50021 --></div>
+<hr class="endfloat" /></div>
+<h4 class="likesubsectionHead"><a id="x1-6000"></a>Server program</h4>
+<!--l. 118-->
+<p class="noindent">Your server program must obey the protocol as described. It will sit and wait for TCP connections, and respond with strings as appropriate. If an unexpected string is received, it should respond with the string listed in the protocol (i.e., if it is waiting for ADDRESS but does not receive this, it should respond with HELLO). <!--l. 124--></p>
+<p class="noindent"></p>
+<h4 class="likesubsectionHead"><a id="x1-7000"></a>Client program</h4>
+<!--l. 126-->
+<p class="noindent">Your client program will send text according to the protocol. It will initiate the protocol, i.e., the first thing it will do is send HELLO. It will then continue until a BYE is received and then terminate. <!--l. 130--></p>
+<p class="noindent"></p>
+<h3 class="likesectionHead"><a id="x1-8000"></a>Testing</h3>
+<!--l. 132-->
+<p class="noindent">You will develop two programs that obey the protocol correctly. This means that they will not be very interesting, since they will complete a transaction as shown in Figure&nbsp;<a href="#x1-50011">1<!--tex4ht:ref: f:prot --></a> and terminate. That said, you must demonstrate successful operation of this. <!--l. 137--></p>
+<p class="noindent">You should also test that your programs are robust against unexpected input or protocol violations. To do this, you should use the program nc which is installed on the CS Linux machines and will also be used in the Week 1 exercise class. <!--l. 142--></p>
+<p class="noindent">You should also test other aspects of your programs as you deem necessary, and with recall of testing strategies covered in first-level. <!--l. 152--></p>
+<p class="noindent"></p>
+<h4 class="likesubsectionHead"><a id="x1-9000"></a>Remote access</h4>
+<!--l. 154-->
+<p class="noindent">You will find the CS System Wiki page on working remotely useful: <a href="https://systems.wiki.cs.st-andrews.ac.uk/index.php/Working_remotely" class="url">https://systems.wiki.cs.st-andrews.ac.uk/index.php/Working_remotely</a> You should also review the Orientation Week material on remote access, the FAQ in the Lab Team, and attempt the Week 1 exercise tasks on running commands on the host servers. <!--l. 160--></p>
+<p class="noindent"></p>
+<h4 class="likesubsectionHead"><a id="x1-10000"></a>Host servers</h4>
+<!--l. 162-->
+<p class="noindent">The School has four host servers (see <a href="https://systems.wiki.cs.st-andrews.ac.uk/index.php/Linux_Host_service" class="url">https://systems.wiki.cs.st-andrews.ac.uk/index.php/Linux_Host_service</a>). Their hostnames and current IP addresses are shown in Table&nbsp;<a href="#x1-100012">2<!--tex4ht:ref: t:host --></a>.</p>
+<div class="table"><!--l. 166-->
+<p class="noindent"><a id="x1-100012"></a></p>
+<hr class="float" />
+<div class="float">
+<div class="tabular">
+<table id="TBL-2" class="tabular">
+<colgroup id="TBL-2-1g">
+<col id="TBL-2-1" /></colgroup>
+<colgroup id="TBL-2-2g">
+<col id="TBL-2-2" /></colgroup>
+<tr style="vertical-align:baseline;" id="TBL-2-1-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-1-1" class="td11">Hostname</td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-1-2" class="td11">IP address</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-2-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-2-1" class="td11">klovia.cs.st-andrews.ac.uk</td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-2-2" class="td11">138.251.22.78</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-3-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-3-1" class="td11">lyrane.cs.st-andrews.ac.uk</td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-3-2" class="td11">138.251.22.77</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-4-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-4-1" class="td11">palain.cs.st-andrews.ac.uk</td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-4-2" class="td11">138.251.22.76</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-5-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-5-1" class="td11">trenco.cs.st-andrews.ac.uk</td>
+<td style="white-space:nowrap; text-align:right;" id="TBL-2-5-2" class="td11">138.251.22.79</td>
+</tr>
+</table>
+</div>
+<br />
+<div class="caption"><span class="id">Table&nbsp;2:</span> <span class="content">Host servers</span></div>
+<!--tex4ht:label?: x1-100012 --></div>
+<hr class="endfloat" /></div>
+<!--l. 179-->
+<p class="noindent">When you login to your personal host server, you will see that this is a DNS alias for one of the above servers. You can check which server is yours by one of the following:</p>
+<ul class="itemize1">
+<li class="itemize">looking at the command-line prompt after you have logged into your host server</li>
+<li class="itemize">running the command hostname on your host server</li>
+<li class="itemize">using the DNS lookup tool dig as follows:<br />
+dig +short username.host.cs.st-andrews.ac.uk<br />
+(we will look at DNS in more detail later in the module)</li>
+</ul>
+<!--l. 193-->
+<p class="noindent">You must test that one of your programs can run on your host server and the other on a different host server from the list above.</p>
+<h3 class="likesectionHead"><a id="x1-11000"></a>Report</h3>
+<!--l. 201-->
+<p class="noindent">Your report should show evidence of testing, describe any problems you have had, and also show evidence of some successful runs of the protocol. <!--l. 208--></p>
+<p class="noindent"></p>
+<h3 class="likesectionHead"><a id="x1-12000"></a>Hints</h3>
+<ul class="itemize1">
+<li class="itemize">Working out a machine&#8217;s IP address is surprisingly complicated! Remember that an IP address identifies an interface and not a host. A host may have multiple interfaces. One solution is to identify the interface used to connect to a particular server, for instance by opening a connection (i.e., a socket) and then looking at the relevant address (getLocalAddress())</li>
+<li class="itemize">Make judicious use of the nc tool. Look at the Week 1 exercise tasks and also check the documentation, i.e., man nc.</li>
+<li class="itemize">The server will need to keep track of its current state to work out what to send next.</li>
+</ul>
+<!--l. 225-->
+<p class="noindent"></p>
+<h3 class="likesectionHead"><a id="x1-13000"></a>Submission</h3>
+<!--l. 225-->
+<p class="noindent">A single file containing your code and report in ZIP format must be submitted electronically via MMS by the deadline. Submissions in any other format will be rejected. <!--l. 227--></p>
+<p class="noindent">The standard mark descriptors apply to this practical. Note that there are no extensions; to achieve excellent marks you should meet all of the requirements with exceptional clarity and demonstrated insight. <!--l. 231--></p>
+<p class="noindent"></p>
+<h3 class="likesectionHead"><a id="x1-14000"></a>Policies and Guidelines</h3>
+<div class="framedenv" id="shaded-1"><!--l. 231-->
+<p class="noindent">Marking<br />
+See the standard mark descriptors in the School Student Handbook:<br />
+<a href="https://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/feedback.html#Mark_Descriptors" class="url">https://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/feedback.html#Mark_Descriptors</a> <!--l. 231--></p>
+<p class="noindent">Lateness penalty<br />
+The standard penalty for late submission applies (Scheme B: 1 mark per 8 hour period, or part thereof):<br />
+<a href="https://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/assessment.html#lateness-penalties" class="url">https://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/assessment.html#lateness-penalties</a> <!--l. 231--></p>
+<p class="noindent">Good academic practice<br />
+The University policy on Good Academic Practice applies:<br />
+<a href="https://www.st-andrews.ac.uk/students/rules/academicpractice/" class="url">https://www.st-andrews.ac.uk/students/rules/academicpractice/</a></p>
+</div>
+<a id="x1-14000doc"></a>
+</body>
+</html>

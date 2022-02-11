@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.2.0" />
+<title>Security</title>
+<meta charset="iso-8859-1" />
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="\aa:CssFile" />
+<meta name="src" content="CS2003-wk11-tutorial.tex" />
+</head>
+<body>
+<div class="maketitle">University of St Andrews School of Computer Science<br />
+<br />
+CS2003&nbsp;&#8212;&nbsp;Internet and the Web&nbsp;&#8212;&nbsp;2020/21 &nbsp;<br />
+Tutorial&nbsp;9:
+<h2 class="titleHead">Security</h2>
+<br />
+Date: Week 11: 26-27 Nov 2020<br /></div>
+<!--l. 48-->
+<p class="noindent">This week&#8217;s tutorial questions cover this final week&#8217;s material on security.</p>
+<ol class="enumerate1">
+<li class="enumerate" id="x1-3x1">Security (?) <!--l. 57-->
+<p class="noindent">Your PHB (Pointy-Haired Boss) is concerned about securing the sensitive data held by your company. Rather than store data in plaintext, the PHB has created the program Encrypt.java to obfuscate the data. You can compile and run this program as follows:</p>
+<div class="verbatim" id="verbatim-1"><span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">javac</span><span class="pcrr7t-x-x-140">&nbsp;-cp</span><span class="pcrr7t-x-x-140">&nbsp;commons-lang3-3.11.jar</span><span class="pcrr7t-x-x-140">&nbsp;Encrypt.java</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">java</span><span class="pcrr7t-x-x-140">&nbsp;-cp</span><span class="pcrr7t-x-x-140">&nbsp;commons-lang3-3.11.jar:.</span><span class="pcrr7t-x-x-140">&nbsp;Encrypt</span><span class="pcrr7t-x-x-140">&nbsp;super-sensitive-data</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span></div>
+<!--l. 68-->
+<p class="nopar"></p>
+<ol class="enumerate2">
+<li class="enumerate" id="x1-5x1">How does this program work?</li>
+<li class="enumerate" id="x1-7x2">How does it address the three aims of security?</li>
+</ol>
+</li>
+<li class="enumerate" id="x1-9x2">Certificates <!--l. 101-->
+<p class="noindent">Let&#8217;s Encrypt was mentioned in lectures as a source of free TLS certificates. Please read this recent blog entry from the Let&#8217;s Encrypt website: <a href="https://letsencrypt.org/2020/11/06/own-two-feet.html" class="url">https://letsencrypt.org/2020/11/06/own-two-feet.html</a></p>
+<ol class="enumerate2">
+<li class="enumerate" id="x1-11x1">Operating systems and web browsers have a set of trusted root certificates. Why do you think this is? Would it be better if this set of certificates was chosen by the owner of a device?</li>
+<li class="enumerate" id="x1-13x2">What is the problem with Android highlighted by that blog entry? Can you think of some solutions?</li>
+<li class="enumerate" id="x1-15x3">In 2011 the Diginotar Certificate Authority was attacked, which resulted in it issuing fraudulent certificates for a variety of sites including google.com. See <a href="https://slate.com/technology/2016/12/how-the-2011-hack-of-diginotar-changed-the-internets-infrastructure.html" class="url">https://slate.com/technology/2016/12/how-the-2011-hack-of-diginotar-changed-the-internets-infrastructure.html</a> for a good article on this incident. One outcome of this is that
+certificate pinning is now much more common, where clients are statically configured to only accept particular certificates. What might this mean for system upgrades or any changes to code?</li>
+<li class="enumerate" id="x1-17x4">Free certificates are often used for attacks (e.g., a phishing attack might involve registering the domain name www.st-andrew.ac.uk and using a Let&#8217;s Encrypt certificate to make it look as if everything was secure). Read this article:<br />
+<a href="https://news.netcraft.com/archives/2015/10/12/certificate-authorities-issue-hundreds-of-deceptive-ssl-certificates-to-fraudsters.html" class="url">https://news.netcraft.com/archives/2015/10/12/certificate-authorities-issue-hundreds-of-deceptive-ssl-certificates-to-fraudsters.html</a> <!--l. 179-->
+<p class="noindent">How does an Extended Validation certificate make it harder to perform a phishing attack?</p>
+</li>
+</ol>
+</li>
+<li class="enumerate" id="x1-19x3">Contact Tracing <!--l. 195-->
+<p class="noindent">A large technology story this year (in England and Wales at least) has been the development of the NHS Covid contact-tracing app. You can read more about the history of this app here:<br />
+<a href="https://www.digitalhealth.net/2020/09/timeline-what-happened-to-the-nhs-contact-tracing-app/" class="url">https://www.digitalhealth.net/2020/09/timeline-what-happened-to-the-nhs-contact-tracing-app/</a> <!--l. 200--></p>
+<p class="noindent">You should also read this article and (optionally) this open letter from academics:</p>
+<ul class="itemize1">
+<li class="itemize"><a href="https://news.sky.com/story/coronavirus-nhs-contact-tracing-app-could-be-abused-by-spies-security-experts-warn-11980596" class="url">https://news.sky.com/story/coronavirus-nhs-contact-tracing-app-could-be-abused-by-spies-security-experts-warn-11980596</a></li>
+<li class="itemize"><a href="https://drive.google.com/file/d/1uB4LcQHMVP-oLzIIHA9SjKj1uMd3erGu/view" class="url">https://drive.google.com/file/d/1uB4LcQHMVP-oLzIIHA9SjKj1uMd3erGu/view</a></li>
+</ul>
+<!--l. 208-->
+<p class="noindent">The original version of the app used TLS to send contact-tracing data from phones to the NHS. As such it provided security on the wire. Why then were some experts worried about the app? Do you think that they were right to be worried?</p>
+</li>
+<li class="enumerate" id="x1-21x4">Create one question on PeerWise covering the topics from week 11, and tag this question with the tag &#8220;week-11&#8221;. You should also try to answer at least one question with the same tag. Your tutor will pick a question at random during the tutorial and you can go through it together as a tutorial group.</li>
+</ol>
+<a id="x1-1doc"></a>
+</body>
+</html>

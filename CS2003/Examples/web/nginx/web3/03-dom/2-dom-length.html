@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- Saleem BHatti, Sep 2018 -->
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Traversal of a DOM Tree using Siblings</title>
+</head>
+
+<body onload = "alert('The length of this document is ' + countCharacters(document.body))">
+
+<h1>Traversal of a DOM Tree using Siblings</h1>
+
+<p>This is a <i>sample</i> document</p>
+
+<p>How long is it?</p>
+
+<p>Look at the Javascript to see what is happening.</p>
+
+<script>
+"use strict";
+
+function countCharacters(n) {
+  if (n.nodeType == Node.TEXT_NODE) { return n.length; }
+  let numChars = 0;
+  for (let i = n.firstChild; i != null; i = i.nextSibling) {
+    numChars += countCharacters(i);
+  }
+  return numChars;
+}
+</script>
+
+</body>
+</html>

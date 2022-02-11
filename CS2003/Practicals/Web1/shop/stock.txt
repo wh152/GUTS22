@@ -1,0 +1,5 @@
+crawdad,Crawdad,It's actually a 'crayfish'.,4.50
+gorilla,Gorilla,Gives a friendly wave.,8.50
+ninja,Ninja,Hero in a half-shell.,12.50
+psion,Psion 5,A computing classic - rare.,125.00
+totem,Totem,Mysterious and wooden (untold supernatural powers).,150.00

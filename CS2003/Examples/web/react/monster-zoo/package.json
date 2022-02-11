@@ -1,0 +1,17 @@
+{
+    "name": "monster-zoo",
+    "version": "1.0.0",
+    "scripts": {
+        "client": "cd client && yarn start",
+        "server": "nodemon server.js",
+        "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    },
+    "dependencies": {
+        "concurrently": "^5.0.0",
+        "csv": "^5.1.3",
+        "csv-parse": "^4.6.5",
+        "cvs": "^0.6.8",
+        "express": "^4.17.1",
+        "http-proxy-middleware": "^0.20.0"
+    }
+}

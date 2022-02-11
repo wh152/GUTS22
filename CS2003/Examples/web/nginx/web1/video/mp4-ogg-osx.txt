@@ -1,0 +1,3 @@
+brew remove ffmpeg
+brew install --with-theora --with-libvorbis ffmpeg
+ffmpeg -i test.mov -c:v libtheora -c:a libvorbis -q:v 10 -q:a 10 test.ogv

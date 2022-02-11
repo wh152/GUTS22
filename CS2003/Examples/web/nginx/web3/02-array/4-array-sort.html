@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- Saleem BHatti, Sep 2018 -->
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Sorting Arrays</title>
+</head>
+
+<body>
+<h1>Sorting Arrays</h1>
+
+<p>Look at the Javascript in the source to see what is happening.</p>
+
+<p>
+<script>
+
+let a = [42, -1, 116, 3782];
+
+document.write("List elements"+"<br/>");
+for (let i=0; i < a.length; i++) { document.write(a[i] + "<br />"); }
+document.write("<br />");
+
+a.sort();
+document.write( "Alpha sorted elements" + "<br />" );
+for (let i=0; i < a.length; i++) { document.write(a[i] + "<br />"); }
+document.write("<br />");
+
+a.sort(function(a, b) { return a - b; });
+document.write( "Numeric sorted elements" + "<br />" );
+for (let i=0; i < a.length; i++) { document.write(a[i] + "<br />"); }
+document.write("<br />");
+
+</script>
+
+</p>
+</body>
+
+</html>

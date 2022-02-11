@@ -1,0 +1,888 @@
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org" />
+<title>Peer Assessment</title>
+<meta charset="iso-8859-1" />
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="/aa:CssFile" />
+<meta name="src" content="CS2003-PeerWise.tex" />
+</head>
+<body>
+<div class="maketitle">University of St Andrews School of Computer Science<br />
+<br />
+CS2003&nbsp;&#8212;&nbsp;The Internet and the Web: Concepts and Programming&nbsp;&#8212;&nbsp;2020/21 &nbsp;<br />
+Tutorial&nbsp;0:
+<h2 class="titleHead">Peer Assessment</h2>
+<br />
+Date: 2020-09-17<br /></div>
+<h3 class="sectionHead"><span class="titlemark">1</span> <a id="x1-10001"></a>Introduction</h3>
+<!--l. 23-->
+<p class="noindent">In this module we are going to use the online system PeerWise to encourage what is known as &#8220;deep learning&#8221;<span class="footnote-mark"><a href="#fn1x0" id="fn1x0-bk"><sup class="textsuperscript">1</sup></a></span><a id="x1-1001f1"></a> into some of the topics raised in this module. As lecturers we are fully aware that &#8220;you don&#8217;t really know a topic until you teach it.&#8221; So the purpose of the PeerWise system is for you to teach each other, by writing a number
+of multiple-choice questions on CS2003 topics, and answering questions written by your fellow classmates. By the end of the module, you will have collectively created a large bank of questions that should prove useful for revision. <!--l. 36--></p>
+<p class="noindent"></p>
+<h3 class="likesectionHead"><a id="x1-20001"></a>Requirements</h3>
+<!--l. 38-->
+<p class="noindent">Each week, in addition to the tutorial questions, you are to create and answer at least one multiple-choice question (MCQ) on PeerWise about that week&#8217;s tutorial material. During tutorials, your tutor will pick a question and discuss it. <!--l. 43--></p>
+<p class="noindent"></p>
+<h4 class="likesubsectionHead"><a id="x1-30001"></a>PeerWise</h4>
+<!--l. 45-->
+<p class="noindent">PeerWise is a web-based system for designing and answering MCQs developed at the University of Auckland. It is widely used at over 1,500 education institutions around the world; you may be interested in reading this short paper describing its effectiveness in computer science education&nbsp;<span class="cite">[<a href="#Xdenny:peerwise">1</a>]</span>. <!--l. 51--></p>
+<p class="noindent">The MCQs that you create in PeerWise will be visible and answerable by all of the other students on this module. By creating and answering each other&#8217;s questions, you will hopefully develop a deeper understanding of the module&#8217;s topics. <!--l. 56--></p>
+<p class="noindent"></p>
+<h4 class="likesubsectionHead"><a id="x1-40001"></a>Registering for the system</h4>
+<!--l. 58-->
+<p class="noindent">Start by visiting PeerWise at <a href="https://peerwise.cs.auckland.ac.nz/at/?st-andrews_uk" class="url">https://peerwise.cs.auckland.ac.nz/at/?st-andrews_uk</a> <!--l. 60--></p>
+<p class="noindent">First click the <a href="https://peerwise.cs.auckland.ac.nz/register/?st-andrews_uk">&#8220;Registration&#8221; link</a> and follow the prompts. You will be asked to choose a username and a password for your PeerWise account. To maintain some level of anonymity, you are encouraged to use a randomly-generated username (e.g. a random string comprising numbers and letters). You might wish to write a program to generate such a username, or to use a website such as <a href=
+"https://www.random.org/strings/" class="url">https://www.random.org/strings/</a> <!--l. 69--></p>
+<p class="noindent">Once you have registered, you need to join the course &#8220;CS2003 (2020-21 Semester 1)&#8221;. To do this you should visit <a href="https://peerwise.cs.auckland.ac.nz/home/index.php?cmd=joinCourse" class="url">https://peerwise.cs.auckland.ac.nz/home/index.php?cmd=joinCourse</a> and you will need to enter two pieces of information: <!--l. 75--></p>
+<p class="noindent"></p>
+<ol class="enumerate1">
+<li class="enumerate" id="x1-4002x1">Course ID = 21918</li>
+<li class="enumerate" id="x1-4004x2">Identifier = Please enter your identifier for this course. You can find your identifier by looking for your matriculation number in the table at the end of this document. Note that this identifier is only used for creating the account; after registering with the identifier you then use your own username for PeerWise.</li>
+</ol>
+<!--l. 86-->
+<p class="noindent"></p>
+<h4 class="likesubsectionHead"><a id="x1-50001"></a>Designing questions</h4>
+<!--l. 88-->
+<p class="noindent">You can create MCQs by clicking on &#8220;Your questions&#8221; and then the &#8220;Create new question&#8221; button. PeerWise will ask you for the question text, up to five potential answers, to select the correct answer, and then an explanation for why the correct answer is correct. You should also &#8220;tag&#8221; your question with the relevant week number (e.g. &#8220;week-1&#8221;). <!--l. 95--></p>
+<p class="noindent">What makes a good question? A good MCQ should make someone test factual knowledge, make connections between the concepts raised in the module, or think of new solutions to problems. A low quality MCQ will have an obvious answer, one that can be found by quickly skimming a paper or article, or wrong answers that are obviously wrong and therefore easy to dismiss. Ideally you will have some &#8220;plausible distractor&#8221; or &#8220;red herring&#8221; answers that are tricky to work
+through but ultimately incorrect. A good question will have just one correct answer (with justification for why this is correct) and at least three incorrect answers (with justification for why each of these is incorrect). <!--l. 107--></p>
+<p class="noindent">What makes a good answer? You could discuss why you thought the question was appropriate, explain exactly why the correct answer is correct, and/or explain why all of the other answers are incorrect. The more detail you provide, the more useful your question will be for learning and for revision. <!--l. 113--></p>
+<p class="noindent"></p>
+<h4 class="likesubsectionHead"><a id="x1-60001"></a>Answering and commenting on questions</h4>
+<!--l. 115-->
+<p class="noindent">PeerWise incorporates many features that you may have encountered on social media websites or other Internet forums. You can comment on MCQs, and give them ratings. These will add to your PeerWise &#8220;reputation&#8221;. PeerWise is not assessed, but you may wish to accrue reputation regardless! <!--l. 121--></p>
+<p class="noindent">To help your peers improve their MCQs and to help when they are used for revision, you can provide comments once you have answered the MCQs. You may wish to comment on the difficulty of the MCQ, the accuracy of the answers, or the appropriateness of any red herrings. You may also reply to each other&#8217;s comments to clarify questions or to help improve your MCQs. <!--l. 128--></p>
+<p class="noindent">Please be polite and respectful. Constructive comments are strongly preferred over insults or &#8220;trolling&#8221;. We will monitor the course site on a semi-regular basis,<span class="footnote-mark"><a href="#fn2x0" id="fn2x0-bk"><sup class="textsuperscript">2</sup></a></span><a id="x1-6001f2"></a> but please let us know immediately if you spot anything inappropriate. <!--l. 136--></p>
+<p class="noindent"></p>
+<h4 class="likesubsectionHead"><a id="x1-70001"></a>Ownership</h4>
+<!--l. 138-->
+<p class="noindent">Tristan says: I have used PeerWise for teaching for many years. One common complaint from students is &#8220;Oh you are just too lazy to do any work and you are asking students to create exam questions for you!&#8221; This is not the case. I first came across PeerWise when I went back to university to study for a degree as a mature student. It was perhaps the most useful tool that I found throughout the whole course. Designing my own MCQs meant that I had to revise and truly understand
+the material. My classmates also found it useful, although we all had a good moan about it as it is quite hard work! <!--l. 148--></p>
+<p class="noindent">I truly believe that PeerWise is a great way to learn. It gives you control over your learning and will be a great help when it comes to revision. To demonstrate that it is not about you doing our work for us, I will delete all of the questions on the CS2003 PeerWise board at the end of this academic year (this allows anyone time to use it for resits). No questions will be reused for exams or for any other purposes. If you have any other queries about this, then please get in touch by
+e-mail. <!--l. 7--></p>
+<p class="noindent"></p>
+<h3 class="likesectionHead"><a id="x1-80001"></a>References</h3>
+<!--l. 7-->
+<p class="noindent"></p>
+<div class="thebibliography">
+<p class="bibitem"><span class="biblabel">[1]<span class="bibsp">&nbsp;&nbsp;&nbsp;</span></span><a id="Xdenny:peerwise"></a>P.&nbsp;Denny, J.&nbsp;Hamer, A.&nbsp;Luxton-Reilly, and H.&nbsp;Purchase. PeerWise: students sharing their multiple choice questions. In Proceedings of the Fourth International Workshop on Computing Education Research (ICER &#8217;08), pages 51&#8211;58, Sydney, Australia, 2008. doi:<a href="https://doi.org/10.1145/1404520.1404526">10.1145/1404520.1404526</a>.</p>
+</div>
+<!--l. 160-->
+<p class="noindent"></p>
+<h3 class="likesectionHead"><a id="x1-90001"></a>Identifiers</h3>
+<!--l. 166-->
+<p class="noindent">Please find your matriculation number in the table below and register for PeerWise using the respective identifier. If your matriculation number is not listed, if you find that the identifier has already been used, or if you have any other trouble registering for PeerWise, please get in touch with cs2003.lec@cs-st.andrews.ac.uk immediately.</p>
+<div class="center"><!--l. 173-->
+<p class="noindent"><a id="x1-9001r1"></a><!--l. 181--></p>
+<div class="longtable">
+<table id="TBL-2" class="longtable" cellspacing="0" cellpadding="0">
+<colgroup id="TBL-2-1g">
+<col id="TBL-2-1" /></colgroup>
+<colgroup id="TBL-2-2g">
+<col id="TBL-2-2" /></colgroup>
+<tr style="vertical-align:baseline;" id="TBL-2-1-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-1-1" class="td11">Matriculation ID</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-1-2" class="td11">PeerWise Identifier</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-2-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-2-1" class="td11">150000946</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-2-2" class="td11">3574780021</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-3-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-3-1" class="td11">180001338</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-3-2" class="td11">7699475046</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-4-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-4-1" class="td11">180006827</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-4-2" class="td11">3815347322</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-5-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-5-1" class="td11">180014221</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-5-2" class="td11">5470150819</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-6-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-6-1" class="td11">180016732</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-6-2" class="td11">8828671218</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-7-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-7-1" class="td11">180017975</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-7-2" class="td11">6937243697</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-8-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-8-1" class="td11">180021877</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-8-2" class="td11">6301193069</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-9-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-9-1" class="td11">180030995</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-9-2" class="td11">1925889337</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-10-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-10-1" class="td11">190000735</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-10-2" class="td11">7200165341</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-11-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-11-1" class="td11">190001593</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-11-2" class="td11">9123747702</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-12-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-12-1" class="td11">190001670</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-12-2" class="td11">9449234189</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-13-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-13-1" class="td11">190001704</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-13-2" class="td11">1515048885</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-14-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-14-1" class="td11">190002071</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-14-2" class="td11">0285963436</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-15-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-15-1" class="td11">190002809</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-15-2" class="td11">4839288188</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-16-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-16-1" class="td11">190003270</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-16-2" class="td11">3263616709</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-17-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-17-1" class="td11">190004065</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-17-2" class="td11">1577940061</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-18-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-18-1" class="td11">190004593</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-18-2" class="td11">2347749293</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-19-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-19-1" class="td11">190005057</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-19-2" class="td11">3677756125</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-20-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-20-1" class="td11">190005092</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-20-2" class="td11">0674465360</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-21-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-21-1" class="td11"></td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-21-2" class="td11"></td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-22-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-22-1" class="td11">190005624</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-22-2" class="td11">2405066732</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-23-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-23-1" class="td11">190006203</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-23-2" class="td11">4156822446</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-24-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-24-1" class="td11">190006961</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-24-2" class="td11">5036813875</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-25-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-25-1" class="td11">190007075</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-25-2" class="td11">9219631718</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-26-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-26-1" class="td11">190007422</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-26-2" class="td11">5529836284</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-27-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-27-1" class="td11">190007562</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-27-2" class="td11">8129967953</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-28-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-28-1" class="td11">190008026</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-28-2" class="td11">9080782537</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-29-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-29-1" class="td11">190009056</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-29-2" class="td11">2779967301</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-30-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-30-1" class="td11">190009823</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-30-2" class="td11">2107718324</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-31-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-31-1" class="td11">190009838</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-31-2" class="td11">2890613867</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-32-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-32-1" class="td11">190010714</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-32-2" class="td11">5943334901</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-33-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-33-1" class="td11">190010906</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-33-2" class="td11">7011479213</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-34-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-34-1" class="td11">190011177</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-34-2" class="td11">4516705327</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-35-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-35-1" class="td11">190011856</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-35-2" class="td11">3436451857</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-36-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-36-1" class="td11">190012003</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-36-2" class="td11">9448324827</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-37-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-37-1" class="td11">190012580</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-37-2" class="td11">5504590841</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-38-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-38-1" class="td11">190013089</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-38-2" class="td11">6881502711</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-39-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-39-1" class="td11">190013199</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-39-2" class="td11">4466048099</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-40-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-40-1" class="td11">190013499</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-40-2" class="td11">3646226896</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-41-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-41-1" class="td11">190014253</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-41-2" class="td11">2111195855</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-42-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-42-1" class="td11"></td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-43-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-43-1" class="td11">190014279</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-43-2" class="td11">4821346529</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-44-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-44-1" class="td11">190014412</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-44-2" class="td11">1080186316</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-45-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-45-1" class="td11">190014492</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-45-2" class="td11">6293355095</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-46-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-46-1" class="td11">190014524</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-46-2" class="td11">1092414102</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-47-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-47-1" class="td11">190014686</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-47-2" class="td11">5677324818</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-48-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-48-1" class="td11">190014982</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-48-2" class="td11">6769656201</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-49-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-49-1" class="td11">190015047</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-49-2" class="td11">7484579377</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-50-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-50-1" class="td11">190015339</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-50-2" class="td11">0292501536</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-51-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-51-1" class="td11">190015506</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-51-2" class="td11">1827121452</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-52-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-52-1" class="td11">190015715</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-52-2" class="td11">4274027712</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-53-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-53-1" class="td11">190016045</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-53-2" class="td11">7047305839</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-54-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-54-1" class="td11">190016162</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-54-2" class="td11">5577301367</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-55-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-55-1" class="td11">190016280</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-55-2" class="td11">9041987039</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-56-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-56-1" class="td11">190016412</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-56-2" class="td11">7380294599</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-57-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-57-1" class="td11">190017283</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-57-2" class="td11">2687796613</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-58-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-58-1" class="td11">190017808</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-58-2" class="td11">2696024892</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-59-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-59-1" class="td11">190017829</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-59-2" class="td11">2870503024</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-60-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-60-1" class="td11">190018018</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-60-2" class="td11">6448520677</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-61-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-61-1" class="td11">190018889</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-61-2" class="td11">1207844309</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-62-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-62-1" class="td11">190019931</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-62-2" class="td11">8053611549</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-63-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-63-1" class="td11"></td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-64-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-64-1" class="td11">190020048</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-64-2" class="td11">0060062373</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-65-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-65-1" class="td11">190020523</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-65-2" class="td11">3098912883</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-66-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-66-1" class="td11">190020857</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-66-2" class="td11">6370041947</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-67-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-67-1" class="td11">190022647</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-67-2" class="td11">3469926928</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-68-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-68-1" class="td11">190022658</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-68-2" class="td11">8494015300</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-69-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-69-1" class="td11">190026660</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-69-2" class="td11">7261307451</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-70-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-70-1" class="td11">190027503</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-70-2" class="td11">3430804775</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-71-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-71-1" class="td11">190028289</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-71-2" class="td11">8868964697</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-72-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-72-1" class="td11">200000299</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-72-2" class="td11">2452765617</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-73-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-73-1" class="td11">200002334</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-73-2" class="td11">4837326118</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-74-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-74-1" class="td11">200007779</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-74-2" class="td11">5880439779</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-75-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-75-1" class="td11">200007892</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-75-2" class="td11">8715690980</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-76-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-76-1" class="td11">200011254</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-76-2" class="td11">0910809650</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-77-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-77-1" class="td11">200012696</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-77-2" class="td11">2426552254</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-78-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-78-1" class="td11">200013403</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-78-2" class="td11">2118132854</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-79-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-79-1" class="td11">200018055</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-79-2" class="td11">8208552765</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-80-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-80-1" class="td11">200030688</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-80-2" class="td11">6391349255</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-81-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-81-1" class="td11"></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-82-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-82-1" class="td11"></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-83-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-83-1" class="td11"></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-84-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-84-1" class="td11"></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-85-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-85-1" class="td11"></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="footnotes"><!--l. 27-->
+<p class="noindent"><span class="footnote-mark"><a href="#fn1x0-bk" id="fn1x0"><sup class="textsuperscript">1</sup></a></span>Somewhat confusingly, this is not deep learning in the machine learning context, but here we mean learning that enables a deeper understanding of material. <!--l. 132--></p>
+<p class="noindent"><span class="footnote-mark"><a href="#fn2x0-bk" id="fn2x0"><sup class="textsuperscript">2</sup></a></span>Note that we will not be moderating content or correcting errors: see <a href="https://peerwise.cs.auckland.ac.nz/docs/community/moderate_monitor_or_leave/" class="url">https://peerwise.cs.auckland.ac.nz/docs/community/moderate_monitor_or_leave/</a></p>
+</div>
+</body>
+</html>

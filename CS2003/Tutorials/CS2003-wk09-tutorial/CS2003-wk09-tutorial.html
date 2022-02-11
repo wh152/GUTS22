@@ -1,0 +1,121 @@
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org" />
+<title>1</title>
+<meta charset="iso-8859-1" />
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="/aa:CssFile" />
+<meta name="src" content="CS2003-wk09-tutorial.tex" />
+</head>
+<body>
+<div class="maketitle">University of St Andrews School of Computer Science<br />
+<br />
+CS2003&nbsp;&#8212;&nbsp;Internet and the Web&nbsp;&#8212;&nbsp;2020/21 &nbsp;<br />
+Tutorial&nbsp;9:
+<h2 class="titleHead"></h2>
+<br />
+Date: Week 9: 12-13 Nov 2020<br /></div>
+<!--l. 51-->
+<p class="noindent">This week, some of the tutorial questions are from the week 08 exercise class. This will allow you to discuss the answers in your tutorial group with your tutors.</p>
+<ol class="enumerate1">
+<li class="enumerate" id="x1-3x1">HTTP operation <!--l. 59-->
+<p class="noindent">Copy the shell script: <!--l. 61--></p>
+<p class="noindent"><a href="https://studres.cs.st-andrews.ac.uk/CS2003/Examples/CS2003-Examples-wk08/curl_time.sh" class="url">https://studres.cs.st-andrews.ac.uk/CS2003/Examples/CS2003-Examples-wk08/curl_time.sh</a> <!--l. 63--></p>
+<p class="noindent">to your own filespace. Remember from the exercise class that this file can also be found on the lab machines at<br />
+/cs/studres/CS2003/Examples/CS2003-Examples-wk08/curl_time.sh <!--l. 67--></p>
+<p class="noindent">Run the file:</p>
+<div class="verbatim" id="verbatim-1"><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;./curl_time.sh</span></div>
+<!--l. 71-->
+<p class="nopar"><!--l. 73--></p>
+<p class="noindent">Note the two values of real time that are reported. Examine the contents of the shell script. Explain the difference in the two times reported.</p>
+</li>
+<li class="enumerate" id="x1-5x2">IP forwarding <!--l. 126-->
+<p class="noindent">You might find the IPNetMask program useful: <!--l. 128--></p>
+<p class="noindent"><a href="https://studres.cs.st-andrews.ac.uk/CS2003/Examples/CS2003-Examples-wk08/IPNetMask.java" class="url">https://studres.cs.st-andrews.ac.uk/CS2003/Examples/CS2003-Examples-wk08/IPNetMask.java</a> <!--l. 130--></p>
+<p class="noindent">For the forwarding table entries A - D below:</p>
+<div class="verbatim" id="verbatim-2"><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;destination</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;mask</span> <span class=
+"pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">A</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;121.16.0.0</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;16</span>
+<span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">B</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;121.16.20.0</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;24</span> <span class=
+"pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">C</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;121.16.16.0</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;20</span> <span class=
+"pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">D</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;0.0.0.0</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class=
+"pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;0</span></div>
+<!--l. 138-->
+<p class="nopar"><!--l. 140--></p>
+<p class="noindent">find which would be used for each of the following destination addresses:</p>
+<div class="verbatim" id="verbatim-3"><span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;121.16.20.2</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;121.17.20.4</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;121.16.6.6</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;121.16.17.8</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;121.16.21.10</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">&nbsp;</span><span class="pcrr7t-x-x-140">&nbsp;120.16.20.12</span></div>
+<!--l. 150-->
+<p class="nopar"></p>
+</li>
+<li class="enumerate" id="x1-7x3">IP addressing for a site <!--l. 185-->
+<p class="noindent">You might find the IPNetMask program useful: <!--l. 187--></p>
+<p class="noindent"><a href="https://studres.cs.st-andrews.ac.uk/CS2003/Examples/CS2003-Examples-wk08/IPNetMask.java" class="url">https://studres.cs.st-andrews.ac.uk/CS2003/Examples/CS2003-Examples-wk08/IPNetMask.java</a> <!--l. 189--></p>
+<p class="noindent">You have a new office site to set up for a company with three departments, each which needs to run its own network, but the four departments should have connectivity between them. <!--l. 193--></p>
+<p class="noindent">All departments need connectivity to the Internet. <!--l. 195--></p>
+<p class="noindent">Each department could have up to 200 systems running (clients and internal servers). <!--l. 198--></p>
+<p class="noindent">A set of 24 servers must be accessible directly to customers via the Internet, as well as internally to the clients in each department. <!--l. 201--></p>
+<p class="noindent">Explain, with a diagram, how you would configure structure and addressing for this network if:</p>
+<ol class="enumerate2">
+<li class="enumerate" id="x1-9x1">you were allocated the prefix 134.24.144.0/22 for the new office site.</li>
+<li class="enumerate" id="x1-11x2">you were allocated the prefix 134.24.144.0/27 for the new office site.</li>
+</ol>
+<!--l. 212-->
+<p class="noindent">Have your diagram ready to share with your tutor group (e.g. in the Teams chat or by sharing your screen). If you sketch your diagram on paper, take a photo of it prior to the tutorial.</p>
+</li>
+<li class="enumerate" id="x1-13x4">IP subnetting in the School of CS <!--l. 276-->
+<p class="noindent">The CS host servers and lab machines sit on different subnets. Using the Linux command-line tools introduced in the week 08 exercise class, try to determine the two subnets. Give the broadcast address for each subnet.</p>
+</li>
+<li class="enumerate" id="x1-15x5">Implications of NAT <!--l. 291-->
+<p class="noindent">We briefly discussed in lectures how NAT breaks the &#8220;end to end&#8221; nature of the Internet architecture. Remember that a simple NAT router will add an entry to its mapping table whenever an outbound packet comes from a host with a private address. Consider for instance:</p>
+<ul class="itemize1">
+<li class="itemize">A home user, Alice, is given a single global IPv4 address 99.99.99.99 by her ISP.</li>
+<li class="itemize">Alice decides to use the 10/8 private address space for her home network.</li>
+<li class="itemize">Alice&#8217;s son, Bob, has a laptop with the address 10.0.10.10 (allocated statically or via DHCP &#8212; this is relatively unimportant).</li>
+<li class="itemize">Bob&#8217;s laptop connects to a web server at 138.251.22.83. The laptop&#8217;s operating system creates a TCP connection identified by the {src addr, src port, dest addr, dest port} four-tuple {10.0.10.10, 3888, 138.251.22.83, 80}.</li>
+<li class="itemize">Alice&#8217;s NAT router will then create an entry:<br />
+<div class="tabular">
+<table id="TBL-2" class="tabular">
+<colgroup id="TBL-2-1g">
+<col id="TBL-2-1" /></colgroup>
+<colgroup id="TBL-2-2g">
+<col id="TBL-2-2" /></colgroup>
+<tr style="vertical-align:baseline;" id="TBL-2-1-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-1-1" class="td11">Private address, port</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-1-2" class="td11">Public address, port</td>
+</tr>
+<tr class="hline">
+<td>
+<hr /></td>
+<td>
+<hr /></td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-2-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-2-1" class="td11">10.0.10.10, 3888</td>
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-2-2" class="td11">99.99.99.99, 9876</td>
+</tr>
+<tr style="vertical-align:baseline;" id="TBL-2-3-">
+<td style="white-space:nowrap; text-align:left;" id="TBL-2-3-1" class="td 11"></td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+<ol class="enumerate2">
+<li class="enumerate" id="x1-17x1">What will be the four-tuple of the packets that are received by the webserver (assuming no additional NAT on the webserver&#8217;s network)?</li>
+<li class="enumerate" id="x1-19x2">Why might NAT make it difficult for Bob to run a server on his laptop? Drawing some diagrams might help you here.</li>
+</ol>
+</li>
+<li class="enumerate" id="x1-21x6">Create one question on PeerWise covering the topics from week 8, and tag this question with the tag &#8220;week-8&#8221;. You should also try to answer at least one question with the same tag. Your tutor will pick a question at random during the tutorial and you can go through it together as a tutorial group.</li>
+</ol>
+<a id="x1-1doc"></a>
+</body>
+</html>

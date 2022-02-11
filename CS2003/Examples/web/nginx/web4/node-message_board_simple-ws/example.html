@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- simple WebSockets chat client -->
+
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  #messageBox { border: 0.1rem; }
+  #messageBox { list-style-type: none; }
+  #messageBox li:nth-child(odd) { background: lightcyan; }
+</style>
+
+<title>Simple message board</title>
+</head>
+
+<body>
+
+<h1>Simple message board</h1>
+
+<input id="sendBox" type="text" size="80" maxLength="128"
+autocomplete="off" />
+<button onclick="send()" type="button">Send</button>
+
+<ul id="messageBox">
+  <!-- list items added here by Javascript -->
+</ul>
+
+</body>
+
+<script>
+  let maxMessages = 20;
+  let wsUrl = "ws://" + location.hostname + ":" + location.port;
+  let ws = new WebSocket(wsUrl);
+
+  ws.onopen = function() {
+    alert("Using WebSocket.");
+  }
+
+  ws.onerrer = function(e) {
+    alert("WebSocket Error: " + e);
+  }
+
+  ws.onclose = function(e) {
+    alert("WebSocket closed.");
+  }
+
+  function addToMessageBox(text) {
+    let messageBox = document.getElementById("messageBox");
+    let messageList = messageBox.childNodes;
+    while (messageList.length >= maxMessages)
+      { messageBox.removeChild(messageList[maxMessages-1]); }
+    let t = document.createTextNode(text);
+    let li = document.createElement("li");
+    li.appendChild(t);
+    messageBox.insertBefore(li, messageList[0]);
+  }
+
+  ws.onmessage = function(m) {
+    addToMessageBox(m.data);
+  }
+
+  function send() {
+    let s = document.getElementById("sendBox");
+    let t = s.value;
+    if (t.length > 0) {
+      ws.send(t);
+      addToMessageBox(t);
+      s.value = "";
+    }
+  }
+</script>
+
+</html>

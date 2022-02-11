@@ -1,0 +1,109 @@
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org" />
+<title>Multicast, Queues and Regex</title>
+<meta charset="iso-8859-1" />
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="/aa:CssFile" />
+<meta name="src" content="CS2003-Examples-wk05.tex" />
+</head>
+<body>
+<div class="maketitle">University of St Andrews School of Computer Science<br />
+<br />
+CS2003&nbsp;&#8212;&nbsp;Internet and the Web&nbsp;&#8212;&nbsp;2020/21 &nbsp;<br />
+Exercise&nbsp;5:
+<h2 class="titleHead">Multicast, Queues and Regex</h2>
+<br />
+Date: 2020-10-15<br /></div>
+<!--l. 27-->
+<p class="noindent">As with all lab exercises, this exercise is not directly assessed. It is intended to complement the material presented in lectures and may turn up in the exam. You are encouraged to complete it in your own time if you do not finish during the scheduled exercise class time. Even more than in previous weeks, you are also encouraged to work with other people in the class to complete the exercises &#8212; you can also work on the exercise classes during lab sessions and use the relevant
+Teams channels to discuss things with each other or to ask for help from a demonstrator. <!--l. 37--></p>
+<p class="noindent">The aim of this exercise class is to look at topics from week 5&#8217;s lectures: multicast, queues and regular expressions. Notes:</p>
+<ul class="itemize1">
+<li class="itemize">Do not be concerned if it seems like there is a lot of material compared to previous weeks: you have the Independent Learning Week (ILW) to further work through the material. Some of the work will also feature in the week 07 tutorial.</li>
+<li class="itemize">Some of the material will also be useful for the Net2 coursework, so you are encouraged to work through it.</li>
+<li class="itemize">The first questions ask you to work with your fellow classmates. I would like you to split into tutorial groups &#8212; find your tutorial group channel in the CS2003 Team and then start a meeting so that you can ask in there to find students who are working on the same tasks. If you find that no-one is in your group, then try to join a group in a different channel. If you or anyone else in the group has questions, ask in the General channel and a lecturer or demonstrator can join your
+meeting.</li>
+</ul>
+<h3 class="sectionHead"><span class="titlemark">1</span> <a id="x1-10001"></a>UDP multicast communication &#8212; heartbeat</h3>
+<!--l. 66-->
+<p class="noindent">Please examine the code in CS2003-Examples-wk05/multicast/, especially MulticastEndpoint.java, looking at the use of the Java classes DatagramPacket, and MulticastSocket. <!--l. 71--></p>
+<p class="noindent">For a MulticastSocket, the IPv4 address is a Class D address (see slide 2 of <a href="https://studres.cs.st-andrews.ac.uk/CS2003/Lectures/cs2003_net-06_communication_models.pdf" class="url">https://studres.cs.st-andrews.ac.uk/CS2003/Lectures/cs2003_net-06_communication_models.pdf</a>). We can choose any address from this range to use for our applications. To ensure that you don&#8217;t end up choosing the same address as someone else while testing, you can once again use your numerical
+user ID value U to create an address of the form 239.x.y.z. Set the values of x, y, and z as follows:</p>
+<div class="verbatim" id="verbatim-1"><span class="pcrr7t-x-x-140">x</span><span class="pcrr7t-x-x-140">&nbsp;=</span><span class="pcrr7t-x-x-140">&nbsp;0</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">y</span><span class="pcrr7t-x-x-140">&nbsp;=</span><span class="pcrr7t-x-x-140">&nbsp;U</span><span class="pcrr7t-x-x-140">&nbsp;DIV</span><span class="pcrr7t-x-x-140">&nbsp;256</span> <span class="pcrr7t-x-x-140">&nbsp;</span><br />
+<span class="pcrr7t-x-x-140">z</span><span class="pcrr7t-x-x-140">&nbsp;=</span><span class="pcrr7t-x-x-140">&nbsp;U</span><span class="pcrr7t-x-x-140">&nbsp;MOD</span><span class="pcrr7t-x-x-140">&nbsp;256</span></div>
+<!--l. 84-->
+<p class="nopar"><!--l. 86--></p>
+<p class="noindent">For instance my userid is 10608 so I would use 239.0.41.112. <!--l. 88--></p>
+<p class="noindent">When a multicast address value is used as a destination address, the IPv4 address does not identify a single host, but identifies a group of hosts. The mechanism for identifying members of the group is maintained by network devices, using a protocol called the Internet Group Management Protocol (IGMP), but we will not cover this in detail in this module (see CS3102). It does mean, however, that for group communication, an application has to join the group to receive packets sent to that
+group. An invocation of the MulticastSocket.joinGroup() method does just this. There are various other parameters for a MulticastSocket, but the only other one we need to concern ourselves with is a port number, which is used as it is for unicast UDP. <!--l. 102--></p>
+<p class="noindent">The Java class MulticastEndpoint is an abstraction over both the classes MulticastSocket and DatagramPacket, to allow sending to, and receiving from, a multicast group. You will see methods to join() and leave() a group, and tx() and rx() to send to and receive from a group. <!--l. 108--></p>
+<p class="noindent">The HeartBeat program implements the basis of a simple discovery protocol. <!--l. 111--></p>
+<p class="noindent"></p>
+<ol class="enumerate1">
+<li class="enumerate" id="x1-1002x1">Make sure that everyone in your group is logged into lab machines in the same subnet. To do this pick machines that all start with the same prefix, e.g. pc3 or pc5. Do not have some members in pc3 and others in pc5. Remember that the list of lab machines is found here: <a href="https://systems.wiki.cs.st-andrews.ac.uk/index.php/Lab_PCs#Remotely_Accessible_Linux_Clients" class=
+"url">https://systems.wiki.cs.st-andrews.ac.uk/index.php/Lab_PCs#Remotely_Accessible_Linux_Clients</a></li>
+<li class="enumerate" id="x1-1004x2">Run the HeartBeat program, with one or more classmates also running it on another lab machine. Note and discuss your observations, and discuss the operation of the program.</li>
+<li class="enumerate" id="x1-1006x3">Look at the unicast UDP program CS2003-Examples-wk03/udp/UdpChat.java. Modify this program to create a simple multicast-based &#8216;text chat&#8217; program. You will need to use both the Configuration and MulticastEndpoint classes to do this. To test your chat program with others in your group, you can use the multicast address / port combination: 239.2.20.n / 2003, where n is your tutorial group number. If you want to test with the whole class (or at least everyone
+who is on the same subnet as you), then try using 239.2.20.20 / 2003.</li>
+</ol>
+<!--l. 148-->
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">2</span> <a id="x1-20002"></a>Multi-user TCP server: MultiChat</h3>
+<!--l. 150-->
+<p class="noindent">Please examine the code for the MultiChat application in CS2003-Examples-wk05/MultiChat/. <!--l. 154--></p>
+<p class="noindent">Please also look at pages 16-20 of: <a href="https://studres.cs.st-andrews.ac.uk/CS2003/Lectures/cs2003_net-07_server_systems.pdf" class="url">https://studres.cs.st-andrews.ac.uk/CS2003/Lectures/cs2003_net-07_server_systems.pdf</a> <!--l. 158--></p>
+<p class="noindent">Get the application working, with the server running on one lab machine, and multiple clients connecting to it running on other lab machines. You should again do this with other people in your group. <!--l. 163--></p>
+<p class="noindent"></p>
+<ol class="enumerate1">
+<li class="enumerate" id="x1-2002x1">How is it that MultiChatSever can listen for incoming connections, as well as relay messages to all connected users?</li>
+<li class="enumerate" id="x1-2004x2">How does the program maintain state about all connected users, and all incoming / outgoing messages?</li>
+<li class="enumerate" id="x1-2006x3">How are the protocol messages defined?</li>
+<li class="enumerate" id="x1-2008x4">The class ChatMessage was designed to show you an example of encoding and decoding of application-level messages in a text-based protocol, by using regular expressions. As such, it contains a step-by-step breakdown of the message format as a regular expression, rather than having one long string for the regular expression. So, of course, if you wish, you can modify the program so that most of the static private final String definitions disappear. Of course, to see the
+components of the regular expression, or the whole regular expression, you can simply modify the code to print the strings. <!--l. 185-->
+<p class="noindent">Notice how relatively simple the (encode() and decode() methods are, once the regular expressions are finalised. In this case, the use of named capture groups in the regular expressions helps greatly with decoding. (Rather than having a constructor, the (encode() and decode() methods are factory methods for the ChatMessage class.)</p>
+</li>
+</ol>
+<!--l. 196-->
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">3</span> <a id="x1-30003"></a>Regular Expressions</h3>
+<!--l. 198-->
+<p class="noindent"></p>
+<ol class="enumerate1">
+<li class="enumerate" id="x1-3002x1">Modify CS2003-Examples-wk05/regex/FindMe.java so that it can:
+<ul class="itemize1">
+<li class="itemize">Match the string &#8220;FindMe&#8221; only if it appears as a separate word (i.e., it is not a sequence within another string); and</li>
+<li class="itemize">Perform that match regardless of whether or not the letters in &#8220;FindMe&#8221; are uppercase, or lowercase, or a mix of uppercase and lowercase.</li>
+</ul>
+</li>
+<li class="enumerate" id="x1-3004x2">Compile and run <!--l. 213-->
+<p class="noindent">CS2003-Examples-wk05/regex/RegexCSV.java with CS2003-usernames-2020.csv as an argument. This CSV file contains a list of your usernames and your server port numbers (id -u). You will see that the program splits the CSV file and prints each line. It also prints out a number of error messages about regexes.</p>
+<ul class="itemize1">
+<li class="itemize">Redefine String r with a regular expression that has two groups with a comma: the first group should be the username and the second the port number. Recompile and if your regular expression is successful, the output should change.</li>
+<li class="itemize">Double-check that your regular expression is sufficiently robust that the first line in the CSV file (&#8220;#username,port&#8221;) does not match. You may already have done this! But if not, a hint is that a username is made up of word characters: see slide 7 of <a href="https://studres.cs.st-andrews.ac.uk/CS2003/Lectures/cs2003_net-08_java_regex.pdf" class="url">https://studres.cs.st-andrews.ac.uk/CS2003/Lectures/cs2003_net-08_java_regex.pdf</a></li>
+</ul>
+</li>
+<li class="enumerate" id="x1-3006x3">Write a program, EmailAddressCheck, that takes a single command-line argument, which is an email address, and checks that it is in the correct (expected) format: &#8216;user@domain.name&#8217;, by using a regular expression. Assume that the only permitted characters in both &#8216;user&#8217; and &#8216;domain.name&#8217; are:
+<ul class="itemize1">
+<li class="itemize">letter ranges: A-Z and a-z</li>
+<li class="itemize">digit range: 0-9</li>
+<li class="itemize">special characters: + - _</li>
+</ul>
+<!--l. 248-->
+<p class="noindent">and that the character &#8216;.&#8217; is permitted only in the &#8216;domain.name&#8217; part, to separate the components of the domain name, as would be expected, e.g. &#8216;tnhh@st-andrews.ac.uk&#8217;. <!--l. 253--></p>
+<p class="noindent">Why is this regular expression check insufficient to determine if this email address is valid and usable? (For starters, think of the address that you use to contact the CS2003 lecturers)</p>
+</li>
+</ol>
+<!--l. 260-->
+<p class="noindent"></p>
+<h3 class="sectionHead"><span class="titlemark">4</span> <a id="x1-40004"></a>FIFO queues</h3>
+<!--l. 262-->
+<p class="noindent">Please examine the code in CS2003-Examples-wk05/SimpleStringQueue/. <!--l. 266--></p>
+<p class="noindent">Please also look at pages 12-15 of: <a href="https://studres.cs.st-andrews.ac.uk/CS2003/Lectures/cs2003_net-07_server_systems.pdf" class="url">https://studres.cs.st-andrews.ac.uk/CS2003/Lectures/cs2003_net-07_server_systems.pdf</a> <!--l. 270--></p>
+<p class="noindent">Compile and run the SimpleStringQueueprogram: [a]dd strings to the queue, [r]emove strings, and [p]rint the queue contents, which includes the position of the tail and the head. <!--l. 275--></p>
+<p class="noindent">Notice how simple, yet effective this &#8216;circular&#8217; FIFO is: the interface really just consists of the methods add() and remove(). The largest method (in terms of lines of code) is the printQ() method, which is only for demonstration purposes, and is not related to the operation of the FIFO queue._______________________________________________________________ <!--l. 283--></p>
+<p class="noindent">Tristan Henderson, with thanks to Saleem Bhatti</p>
+</body>
+</html>

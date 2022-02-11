@@ -1,0 +1,53 @@
+<html lang="en-US" xml:lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org" />
+<title>IP/DNS/UDP</title>
+<meta charset="iso-8859-1" />
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="/aa:CssFile" />
+<meta name="src" content="CS2003-wk04-tutorial.tex" />
+</head>
+<body>
+<div class="maketitle">University of St Andrews School of Computer Science<br />
+<br />
+CS2003&nbsp;&#8212;&nbsp;Internet and the Web&nbsp;&#8212;&nbsp;2020/21 &nbsp;<br />
+Tutorial&nbsp;3:
+<h2 class="titleHead">IP/DNS/UDP</h2>
+<br />
+Date: Week 4: 8-9 Oct 2020<br /></div>
+<ol class="enumerate1">
+<li class="enumerate" id="x1-3x1">IPv4 address structure
+<ol class="enumerate2">
+<li class="enumerate" id="x1-5x1">Explain the structure of an IPv4 address, particularly explaining the prefix, and the role of a mask. (The mask is sometimes called the address mask or network mask, and the prefix is also called the network prefix or routing prefix.)</li>
+<li class="enumerate" id="x1-7x2">Write the value, in &#8216;dotted decimal&#8217; notation, of the prefix for the following IPv4 addresses:
+<ol class="enumerate3">
+<li class="enumerate" id="x1-9x1">138.251.160.61/20</li>
+<li class="enumerate" id="x1-11x2">138.251.159.61/20</li>
+<li class="enumerate" id="x1-13x3">138.251.175.200/20</li>
+</ol>
+<!--l. 130-->
+<p class="noindent">Which two addresses are in the same network? <!--l. 142--></p>
+<p class="noindent">(Hint: Convert the dotted decimal version of the address to hexadecimal or to binary one byte at a time. You can do this by hand, or you could write a program to do it &#8211; it is up to you.)</p>
+</li>
+</ol>
+</li>
+<li class="enumerate" id="x1-15x2">DNS
+<ol class="enumerate2">
+<li class="enumerate" id="x1-17x1">DNS entries have a Time-To-Live (TTL) value (not related to the TTL value in an IPv4 header). Explain what this is used for. Who is responsible for setting the TTL value?</li>
+<li class="enumerate" id="x1-19x2">Explain why caching DNS results close to the clients is useful. Explain the difference between iterative mode and recursive mode operation of DNS servers. Discuss how the combination of the two modes is used, and how this helps with the scaling of the DNS.</li>
+<li class="enumerate" id="x1-21x3">Based on your answers to the questions above, discuss the effect observed in the DNS exercise in the lab session for week 03, when you used dig to query the DNS for www.caida.org.</li>
+</ol>
+</li>
+<li class="enumerate" id="x1-23x3">UDP
+<ol class="enumerate2">
+<li class="enumerate" id="x1-25x1">From the week 03 examples, the UdpClient1 program can run and transmit even when the UdpServer1 program is not running? Why is this so? Would this happen for a TCP client and server? Explain.</li>
+<li class="enumerate" id="x1-27x2">UDP is often used for games. Why is this so? Are there particular types of games that would be more suited to UDP? Or particular aspects of particular games?</li>
+</ol>
+</li>
+<li class="enumerate" id="x1-29x4">Create one question on PeerWise covering the topics from week 3, and tag this question with the tag &#8220;week-3&#8221;. You should also try to answer at least one question with the same tag. Your tutor will pick a question at random during the tutorial and you can go through it together as a tutorial group.</li>
+</ol>
+<!--l. 453-->
+<p class="noindent">(Thanks to Saleem Bhatti and Colin Allison) <a id="x1-1doc"></a></p>
+</body>
+</html>

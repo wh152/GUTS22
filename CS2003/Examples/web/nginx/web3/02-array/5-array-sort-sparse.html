@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- Saleem BHatti, Sep 2018 -->
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Sorting Sparse Arrays</title>
+</head>
+
+<body>
+<h1>Sorting Sparse Arrays</h1>
+
+<p>Look at the Javascript in the source to see what is happening.</p>
+
+<p>
+<script>
+
+let a = new Array();
+a[0] = 42;
+a[2] = "a";
+a[4] = -1;
+a[7] = "b";
+a[9] = 116;
+a[12] = "c";
+a[14] = 3782;
+
+document.write("List elements"+"<br/>");
+for (let i=0; i < a.length; i++) { document.write(a[i] + "<br />"); }
+document.write("<br />");
+
+a.sort();
+document.write( "Alpha sorted elements" + "<br />" );
+for (let i=0; i < a.length; i++) { document.write(a[i] + "<br />"); }
+document.write("<br />");
+
+a.sort(function( a, b ) { return a - b; });
+document.write( "Numeric sorted elements" + "<br />" );
+for(let i=0; i < a.length; i++) { document.write(a[i] + "<br />"); }
+document.write("<br />");
+
+</script>
+
+</p>
+</body>
+
+</html>

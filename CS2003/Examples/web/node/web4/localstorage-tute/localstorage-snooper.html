@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<!--
+LocalStorage demo for CS2003
+Saleem Bhatti, Sep 2018
+-->
+
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>Browser Counter - localStorage</title>
+</head>
+
+<body>
+
+<h1>Browser Counter - localStorage</h1>
+
+<br />
+
+<script>
+  let visits;
+  let user;
+
+  if (!(visits = localStorage.getItem("visits")))
+    visits = "(no data)";
+  if (!(user = localStorage.getItem("user")))
+    user = "(no data)";
+
+  document.write("I know that <b style='color: green;'>"
+                + user +
+                "</b> visited my other page <b style='color: green;'>"
+                + visits +
+                "</b> time(s).");
+</script>
+
+</body>
+</html>

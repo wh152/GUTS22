@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>Closure</title>
+</head>
+
+<body>
+
+<script>
+function pressCounter() {
+  let pc = 0;
+  function pressCounterInc() { return ++pc; }
+  return pressCounterInc;
+}
+
+let p = pressCounter();
+
+function pressMe() {
+  alert("I have been pressed " + p() + " times.");
+}
+</script>
+
+<p>
+<button onclick="pressMe();">
+  Press me ...
+</button>
+</p>
+
+</body>
+
+</html>

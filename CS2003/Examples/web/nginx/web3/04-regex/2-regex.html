@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- Saleem BHatti, Sep 2018 -->
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Javascript Regular Expressions</title>
+</head>
+
+<body>
+
+<h1>Javascript Regular Expressions</h1>
+
+<h2>String Methods for Pattern Matching 2</h2>
+
+<p>
+
+<script type = "text/javascript">
+	let a_string = "I multiply 6 by 7 to get 42 - simples!";
+	document.write("The original string: '" + a_string + "'");
+  document.write("<br />");
+	document.write("The numbers in the string: ");
+ 	document.write(a_string.match(/\d+/g));
+  document.write("<br />");
+	document.write("The digits in the string: ");
+	document.write(a_string.match(/\d/g));
+  document.write("<br />");
+  document.write("The words in the string: ");
+  document.write(a_string.match(/[a-zA-z]+/g));
+  document.write("<br />");
+  document.write("The words in the string of at least 3 letters: ");
+  document.write(a_string.match(/[a-zA-z]{3,}/g));
+</script>
+
+</p>
+
+<p style="color: green;">
+Look at the source for this page so that you can see the patterns that are used.
+</p>
+
+</body>
+
+</html>

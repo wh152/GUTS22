@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- Saleem BHatti, Sep 2018 -->
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Traversal of a DOM Tree</title>
+</head>
+
+<h1>Traversal of a DOM Tree</h1>
+
+<body onload="alert('This document has tags ' + countTags(document))">
+
+<p>This is a <i>sample</i> document.</p>
+
+<p>Look at the Javascript to see what is happening.</p>
+
+<script>
+"use strict";
+
+function countTags(n) {
+  let numTags = 0;
+  if (n.nodeType === Node.ELEMENT_NODE) { numTags++; }
+  let children = n.childNodes;
+  for (let i = 0; i < children.length; i++) {
+    numTags += countTags(children[i]); /* recursive tree traversal */
+  }
+  return numTags;
+}
+</script>
+
+</body>
+</html>
