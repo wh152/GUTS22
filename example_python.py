@@ -1,3 +1,5 @@
+baka_sussy = True
+
 def lessthan(x,y):
     return x < y
 
