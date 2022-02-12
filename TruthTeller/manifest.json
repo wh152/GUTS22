@@ -1,11 +1,18 @@
 {
-  "manifest_version": 2,    // describes manifest format, allowed keys etc, DONT CHANGE
+  "manifest_version": 2,    
   "name": "Truth Teller",
   "version": "1.0.0",
-  "content_scripts": [     // pairs of sites to run on and script running, defaults to running after document_idle
+  "content_scripts": [     
     {
-      "matches": ["<all_urls>"],  // run on all, script is to mention if unsupported to client
+      "matches": ["theguardian.com",
+        "thesun.co.uk"],  
       "js": ["content.js"]
     }
-  ]
+  ],
+  "browser_action": {
+    "default_icon": {
+      "1": "Buttons/supported.png",
+      "2": "Buttons/unsupported.png"
+    }
+  }
 }
