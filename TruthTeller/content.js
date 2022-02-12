@@ -1,11 +1,11 @@
 // more sites will be added at the end (get from some list of sites)
-supportedSites = ["theguardian.co.uk", "thesun.co.uk"]
+supportedSites = ["theguardian.com", "thesun.co.uk"]
 // this will be the domain name
 var domainName = "example"
 if (supportedSites.includes(domainName)){
     // Not sure what to do here
 } else {
-    chrome.browserAction.setIcon("Buttons/supported.png")
+    chrome.browserAction.setIcon("Buttons/unsupported.png")
 }
 
 /*

@@ -6,7 +6,6 @@ while baka_sussy:
 def susususususus(sus):
     print("this is not sussy")
     return sus
-please work xoxox 
 
 def lessthan(x,y):
     return x < y
