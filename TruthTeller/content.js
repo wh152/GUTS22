@@ -1,3 +1,10 @@
+supportedSites = ["theguardian.co.uk", "thesun.co.uk"]
+// this will be the domain name
+var domainName = "example"
+if (!(supportedSites.includes(domainName))){
+    // Have the icon change colour
+}
+
 /*
 1) check page against array of supported sites
 
