@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> connection attempt </title>
+
+    </head>
+
+    <body>
+        <h1> We tryna connect this bitch</h1>
+        <p> pls work luv </p>
+
+
+        <script>
+            const ws= new WebSocket("ws://localhost:8082"); //change this w server name
+
+            ws.addEventListener("open", ()=> {
+                console.log("We are connected") //displays in browser when page opened
+
+                ws.send("happenin"); // sends from browser to server, change w input
+            }); 
+
+            ws.addEventListener("message", ({data})  =>{ //prints to browser
+                console.log(data);
+                
+            } )
+        </script>
+    </body>
+    
